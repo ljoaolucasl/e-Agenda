@@ -14,15 +14,19 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public string data;
         public string inicio;
         public string termino;
-        public string contato;
+        public Contato contato;
+        public string localizacao;
+        public bool remoto;
 
-        public Compromisso(string assunto, string data, string comeco, string termino, string contato)
+        public Compromisso(string assunto, string data, string inicio, string termino, Contato contato, string localizacao, bool remoto)
         {
             this.assunto = assunto;
             this.data = data;
-            this.inicio = comeco;
+            this.inicio = inicio;
             this.termino = termino;
             this.contato = contato;
+            this.localizacao = localizacao;
+            this.remoto = remoto;
         }
     }
 }

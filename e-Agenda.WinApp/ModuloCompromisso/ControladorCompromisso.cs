@@ -26,11 +26,33 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override string ToolTipExcluir { get { return "Excluir Contato existente"; } }
 
+        public override void Adicionar()
+        {
+            TelaCompromissoForm telaCompromisso = new TelaCompromissoForm();
+
+            telaCompromisso.txtId.Text = _repositorioCompromisso.Id.ToString();
+
+            CarregarContatosComboBox(telaCompromisso);
+
+            DialogResult opcaoEscolhida = telaCompromisso.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Compromisso? compromisso = telaCompromisso.Compromisso;
+
+                _repositorioCompromisso.Adicionar(compromisso);
+
+                CarregarRegistros();
+            }
+        }
+
         public override void Editar()
         {
             Compromisso? compromisso = _listagemCompromisso.ObterContatoSelecionado();
 
             TelaCompromissoForm telaCompromisso = new TelaCompromissoForm();
+
+            CarregarContatosComboBox(telaCompromisso);
 
             telaCompromisso.Compromisso = compromisso;
 
@@ -55,36 +77,20 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             {
                 _repositorioCompromisso.Excluir(compromisso);
 
-                _listagemCompromisso.AtualizarLista(_repositorioCompromisso.ObterListaRegistros());
-            }
-        }
-
-        public override void Adicionar()
-        {
-            TelaCompromissoForm telaCompromisso = new TelaCompromissoForm();
-
-            telaCompromisso.txtId.Text = _repositorioCompromisso.Id.ToString();
-
-            telaCompromisso.cbContato.DisplayMember = "nome";
-            telaCompromisso.cbContato.ValueMember = "nome";
-
-            telaCompromisso.cbContato.DataSource = _repositorioContato.ObterListaRegistros();
-
-            DialogResult opcaoEscolhida = telaCompromisso.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                Compromisso? compromisso = telaCompromisso.Compromisso;
-
-                _repositorioCompromisso.Adicionar(compromisso);
-
-                _listagemCompromisso.AtualizarLista(_repositorioCompromisso.ObterListaRegistros());
+                CarregarRegistros();
             }
         }
 
         public override void CarregarRegistros()
         {
             _listagemCompromisso.AtualizarLista(_repositorioCompromisso.ObterListaRegistros());
+        }
+
+        private void CarregarContatosComboBox(TelaCompromissoForm telaCompromisso)
+        {
+            telaCompromisso.cbContato.DisplayMember = "Nome";
+            telaCompromisso.cbContato.ValueMember = "Nome";
+            telaCompromisso.cbContato.DataSource = _repositorioContato.ObterListaRegistros();
         }
 
         public override ListagemCompromissoControl ObterListagem()

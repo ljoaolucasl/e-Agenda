@@ -121,12 +121,15 @@
             // checkContatoBool
             // 
             checkContatoBool.AutoSize = true;
+            checkContatoBool.Checked = true;
+            checkContatoBool.CheckState = CheckState.Checked;
             checkContatoBool.Location = new Point(93, 167);
             checkContatoBool.Name = "checkContatoBool";
             checkContatoBool.Size = new Size(277, 19);
             checkContatoBool.TabIndex = 8;
             checkContatoBool.Text = "Deseja marcar um contato neste compromisso?";
             checkContatoBool.UseVisualStyleBackColor = true;
+            checkContatoBool.CheckedChanged += checkContatoBool_CheckedChanged;
             // 
             // dtInicio
             // 

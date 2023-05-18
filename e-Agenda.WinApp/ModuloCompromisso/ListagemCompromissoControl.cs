@@ -29,7 +29,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 item.SubItems.Add(compromisso.data);
                 item.SubItems.Add(compromisso.inicio);
                 item.SubItems.Add(compromisso.termino);
-                //item.SubItems.Add(compromisso.contato);
+                item.SubItems.Add(compromisso.contato == null ? "" : compromisso.contato.nome);
                 item.Tag = compromisso;
                 listCompromissos.Items.Add(item);
             }

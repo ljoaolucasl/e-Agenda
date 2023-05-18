@@ -32,6 +32,12 @@ namespace e_Agenda.WinApp.Compartilhado
                     if (atributo.Name != "id")
                         atributo.SetValue(entidadeSelecionada, atributo.GetValue(novoRegistro));
                 }
+
+                foreach (var property in entidadeSelecionada.GetType().GetProperties())
+                {
+                    if (property.Name != "Id")
+                        property.SetValue(entidadeSelecionada, property.GetValue(novoRegistro));
+                }
             }
         }
 

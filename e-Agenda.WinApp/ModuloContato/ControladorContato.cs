@@ -18,6 +18,24 @@ namespace e_Agenda.WinApp.ModuloContato
 
         public override string ToolTipExcluir { get { return "Excluir Contato existente"; } }
 
+        public override void Adicionar()
+        {
+            TelaContatoForm telaContato = new TelaContatoForm();
+
+            telaContato.txtId.Text = _repositorioContato.Id.ToString();
+
+            DialogResult opcaoEscolhida = telaContato.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Contato? contato = telaContato.Contato;
+
+                _repositorioContato.Adicionar(contato);
+
+                CarregarRegistros();
+            }
+        }
+
         public override void Editar()
         {
             Contato? contato = _listagemContato.ObterContatoSelecionado();
@@ -47,25 +65,7 @@ namespace e_Agenda.WinApp.ModuloContato
             {
                 _repositorioContato.Excluir(contato);
 
-                _listagemContato.AtualizarLista(_repositorioContato.ObterListaRegistros());
-            }
-        }
-
-        public override void Adicionar()
-        {
-            TelaContatoForm telaContato = new TelaContatoForm();
-
-            telaContato.txtId.Text = _repositorioContato.Id.ToString();
-
-            DialogResult opcaoEscolhida = telaContato.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                Contato? contato = telaContato.Contato;
-
-                _repositorioContato.Adicionar(contato);
-
-                _listagemContato.AtualizarLista(_repositorioContato.ObterListaRegistros());
+                CarregarRegistros();
             }
         }
 

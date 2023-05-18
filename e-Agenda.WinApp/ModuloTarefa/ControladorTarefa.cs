@@ -23,6 +23,24 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override string ToolTipExcluir { get { return "Excluir Tarefa existente"; } }
 
+        public override void Adicionar()
+        {
+            TelaTarefaForm telaTarefa = new TelaTarefaForm();
+
+            telaTarefa.txtId.Text = _repositorioTarefa.Id.ToString();
+
+            DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                Tarefa? tarefa = telaTarefa.Tarefa;
+
+                _repositorioTarefa.Adicionar(tarefa);
+
+                CarregarRegistros();
+            }
+        }
+
         public override void Editar()
         {
             Tarefa? tarefa = _listagemTarefa.ObterContatoSelecionado();
@@ -52,25 +70,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             {
                 _repositorioTarefa.Excluir(tarefa);
 
-                _listagemTarefa.AtualizarLista(_repositorioTarefa.ObterListaRegistros());
-            }
-        }
-
-        public override void Adicionar()
-        {
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
-
-            telaTarefa.txtId.Text = _repositorioTarefa.Id.ToString();
-
-            DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                Tarefa? tarefa = telaTarefa.Tarefa;
-
-                _repositorioTarefa.Adicionar(tarefa);
-
-                _listagemTarefa.AtualizarLista(_repositorioTarefa.ObterListaRegistros());
+                CarregarRegistros();
             }
         }
 
