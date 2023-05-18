@@ -83,5 +83,10 @@ namespace e_Agenda.WinApp.ModuloContato
         {
             return "Cadastro de Contatos";
         }
+
+        public override void Filtrar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

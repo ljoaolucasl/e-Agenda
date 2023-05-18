@@ -20,6 +20,8 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public abstract void Excluir();
 
+        public abstract void Filtrar();
+
         public abstract void CarregarRegistros();
 
         public abstract UserControl ObterListagem();

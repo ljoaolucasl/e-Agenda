@@ -88,5 +88,10 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             return "Cadastro de Tarefas";
         }
+
+        public override void Filtrar()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

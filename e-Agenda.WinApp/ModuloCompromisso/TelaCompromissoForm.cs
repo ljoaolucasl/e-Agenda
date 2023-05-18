@@ -129,18 +129,28 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private bool ValidarContato(ComboBox contato, CheckBox check)
         {
-            if (string.IsNullOrEmpty(cbContato.Text) && !check.Checked)
+            if (check.Checked)
+            {
+                if (string.IsNullOrEmpty(cbContato.Text))
+                {
+                    avisoErro.SetError(contato, "Selecione um Contato");
+                    contato.BackColor = SystemColors.Info;
+                    return false;
+                }
+                else
+                {
+                    avisoErro.SetError(contato, "");
+                    contato.BackColor = SystemColors.Window;
+                    return true;
+                }
+            }
+            else
             {
                 avisoErro.SetError(contato, "");
                 contato.BackColor = SystemColors.Window;
                 return true;
             }
-            else
-            {
-                avisoErro.SetError(contato, "Selecione um Contato");
-                contato.BackColor = SystemColors.Info;
-                return false;
-            }
+
         }
 
         private bool ValidarData(DateTimePicker data)

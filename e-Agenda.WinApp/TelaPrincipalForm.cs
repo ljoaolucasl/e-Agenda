@@ -41,6 +41,11 @@ namespace e_Agenda.WinApp
 
         private void ConfigurarTelaPrincipal()
         {
+            if (_controladorBase is ControladorCompromisso)
+                btnFiltrar.Enabled = true;
+            else
+                btnFiltrar.Enabled = false;
+
             ConfigurarListagem();
 
             ConfigurarToolTipsAndButtons();
@@ -91,6 +96,11 @@ namespace e_Agenda.WinApp
             ResetarBotoes();
         }
 
+        private void btnFiltrar_Click(object sender, EventArgs e)
+        {
+            _controladorBase.Filtrar();
+        }
+
         private void HabilitaEDesabilitaBotoes(object sender, EventArgs e)
         {
             if (((ListView)_listagem.Controls[0]).SelectedItems.Count > 0)
@@ -109,7 +119,5 @@ namespace e_Agenda.WinApp
             btnEditar.Enabled = false;
             btnExcluir.Enabled = false;
         }
-
-        
     }
 }
