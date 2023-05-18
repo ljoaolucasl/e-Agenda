@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaCompromissoForm));
             txtId = new TextBox();
             txtAssunto = new TextBox();
             txtRemoto = new TextBox();
@@ -36,18 +38,20 @@
             radioRemoto = new RadioButton();
             radioPresencial = new RadioButton();
             dtData = new DateTimePicker();
-            checkContatoBool = new CheckBox();
+            checkContato = new CheckBox();
             dtInicio = new DateTimePicker();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            dtTermino = new DateTimePicker();
-            groupBox1 = new GroupBox();
-            button2 = new Button();
-            button1 = new Button();
-            groupBox1.SuspendLayout();
+            dtFinal = new DateTimePicker();
+            gbLocalizacao = new GroupBox();
+            btnCancelar = new Button();
+            btnAdd = new Button();
+            avisoErro = new ErrorProvider(components);
+            gbLocalizacao.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)avisoErro).BeginInit();
             SuspendLayout();
             // 
             // txtId
@@ -64,6 +68,7 @@
             txtAssunto.Name = "txtAssunto";
             txtAssunto.Size = new Size(336, 23);
             txtAssunto.TabIndex = 1;
+            txtAssunto.Validating += Validacoes_Validating;
             // 
             // txtRemoto
             // 
@@ -71,6 +76,7 @@
             txtRemoto.Name = "txtRemoto";
             txtRemoto.Size = new Size(284, 23);
             txtRemoto.TabIndex = 2;
+            txtRemoto.Validating += Validacoes_Validating;
             // 
             // txtPresencial
             // 
@@ -78,6 +84,7 @@
             txtPresencial.Name = "txtPresencial";
             txtPresencial.Size = new Size(284, 23);
             txtPresencial.TabIndex = 3;
+            txtPresencial.Validating += Validacoes_Validating;
             // 
             // cbContato
             // 
@@ -86,10 +93,12 @@
             cbContato.Name = "cbContato";
             cbContato.Size = new Size(127, 23);
             cbContato.TabIndex = 4;
+            cbContato.Validating += Validacoes_Validating;
             // 
             // radioRemoto
             // 
             radioRemoto.AutoSize = true;
+            radioRemoto.Checked = true;
             radioRemoto.Location = new Point(12, 37);
             radioRemoto.Name = "radioRemoto";
             radioRemoto.Size = new Size(70, 19);
@@ -97,6 +106,7 @@
             radioRemoto.TabStop = true;
             radioRemoto.Text = "Remoto:";
             radioRemoto.UseVisualStyleBackColor = true;
+            radioRemoto.Validating += Validacoes_Validating;
             // 
             // radioPresencial
             // 
@@ -105,9 +115,9 @@
             radioPresencial.Name = "radioPresencial";
             radioPresencial.Size = new Size(81, 19);
             radioPresencial.TabIndex = 6;
-            radioPresencial.TabStop = true;
             radioPresencial.Text = "Presencial:";
             radioPresencial.UseVisualStyleBackColor = true;
+            radioPresencial.Validating += Validacoes_Validating;
             // 
             // dtData
             // 
@@ -117,19 +127,21 @@
             dtData.Name = "dtData";
             dtData.Size = new Size(127, 23);
             dtData.TabIndex = 7;
+            dtData.Validating += Validacoes_Validating;
             // 
-            // checkContatoBool
+            // checkContato
             // 
-            checkContatoBool.AutoSize = true;
-            checkContatoBool.Checked = true;
-            checkContatoBool.CheckState = CheckState.Checked;
-            checkContatoBool.Location = new Point(93, 167);
-            checkContatoBool.Name = "checkContatoBool";
-            checkContatoBool.Size = new Size(277, 19);
-            checkContatoBool.TabIndex = 8;
-            checkContatoBool.Text = "Deseja marcar um contato neste compromisso?";
-            checkContatoBool.UseVisualStyleBackColor = true;
-            checkContatoBool.CheckedChanged += checkContatoBool_CheckedChanged;
+            checkContato.AutoSize = true;
+            checkContato.Checked = true;
+            checkContato.CheckState = CheckState.Checked;
+            checkContato.Location = new Point(93, 167);
+            checkContato.Name = "checkContato";
+            checkContato.Size = new Size(277, 19);
+            checkContato.TabIndex = 8;
+            checkContato.Text = "Deseja marcar um contato neste compromisso?";
+            checkContato.UseVisualStyleBackColor = true;
+            checkContato.CheckedChanged += checkContatoBool_CheckedChanged;
+            checkContato.Validating += Validacoes_Validating;
             // 
             // dtInicio
             // 
@@ -139,6 +151,7 @@
             dtInicio.Name = "dtInicio";
             dtInicio.Size = new Size(127, 23);
             dtInicio.TabIndex = 9;
+            dtInicio.Validating += Validacoes_Validating;
             // 
             // label1
             // 
@@ -185,67 +198,76 @@
             label5.TabIndex = 15;
             label5.Text = "Término:";
             // 
-            // dtTermino
+            // dtFinal
             // 
-            dtTermino.CustomFormat = "HH:mm";
-            dtTermino.Format = DateTimePickerFormat.Custom;
-            dtTermino.Location = new Point(302, 120);
-            dtTermino.Name = "dtTermino";
-            dtTermino.Size = new Size(127, 23);
-            dtTermino.TabIndex = 17;
+            dtFinal.CustomFormat = "HH:mm";
+            dtFinal.Format = DateTimePickerFormat.Custom;
+            dtFinal.Location = new Point(302, 120);
+            dtFinal.Name = "dtFinal";
+            dtFinal.Size = new Size(127, 23);
+            dtFinal.TabIndex = 17;
+            dtFinal.Validating += Validacoes_Validating;
             // 
-            // groupBox1
+            // gbLocalizacao
             // 
-            groupBox1.Controls.Add(txtPresencial);
-            groupBox1.Controls.Add(txtRemoto);
-            groupBox1.Controls.Add(radioRemoto);
-            groupBox1.Controls.Add(radioPresencial);
-            groupBox1.Location = new Point(53, 247);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(397, 123);
-            groupBox1.TabIndex = 18;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Localização";
+            gbLocalizacao.Controls.Add(txtPresencial);
+            gbLocalizacao.Controls.Add(txtRemoto);
+            gbLocalizacao.Controls.Add(radioRemoto);
+            gbLocalizacao.Controls.Add(radioPresencial);
+            gbLocalizacao.Location = new Point(34, 247);
+            gbLocalizacao.Name = "gbLocalizacao";
+            gbLocalizacao.Size = new Size(430, 123);
+            gbLocalizacao.TabIndex = 18;
+            gbLocalizacao.TabStop = false;
+            gbLocalizacao.Text = "Localização";
             // 
-            // button2
+            // btnCancelar
             // 
-            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button2.DialogResult = DialogResult.Cancel;
-            button2.Location = new Point(420, 394);
-            button2.Name = "button2";
-            button2.Size = new Size(70, 36);
-            button2.TabIndex = 20;
-            button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = true;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(420, 394);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(70, 36);
+            btnCancelar.TabIndex = 20;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnAdd
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.DialogResult = DialogResult.OK;
-            button1.Location = new Point(344, 394);
-            button1.Name = "button1";
-            button1.Size = new Size(70, 36);
-            button1.TabIndex = 19;
-            button1.Text = "Adicionar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAdd.DialogResult = DialogResult.OK;
+            btnAdd.Enabled = false;
+            btnAdd.Location = new Point(344, 394);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(70, 36);
+            btnAdd.TabIndex = 19;
+            btnAdd.Text = "Adicionar";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += button1_Click;
+            // 
+            // avisoErro
+            // 
+            avisoErro.BlinkRate = 0;
+            avisoErro.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            avisoErro.ContainerControl = this;
+            avisoErro.Icon = (Icon)resources.GetObject("avisoErro.Icon");
             // 
             // TelaCompromissoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(508, 454);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(groupBox1);
-            Controls.Add(dtTermino);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnAdd);
+            Controls.Add(gbLocalizacao);
+            Controls.Add(dtFinal);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(dtInicio);
-            Controls.Add(checkContatoBool);
+            Controls.Add(checkContato);
             Controls.Add(dtData);
             Controls.Add(cbContato);
             Controls.Add(txtAssunto);
@@ -257,8 +279,9 @@
             ShowIcon = false;
             Text = "Cadastro de Compromissos";
             TopMost = true;
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
+            gbLocalizacao.ResumeLayout(false);
+            gbLocalizacao.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)avisoErro).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -270,18 +293,19 @@
         private RadioButton radioRemoto;
         private RadioButton radioPresencial;
         private DateTimePicker dtData;
-        private CheckBox checkContatoBool;
+        private CheckBox checkContato;
         private DateTimePicker dtInicio;
         private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
-        private DateTimePicker dtTermino;
-        private GroupBox groupBox1;
-        private Button button2;
-        private Button button1;
+        private DateTimePicker dtFinal;
+        private GroupBox gbLocalizacao;
+        private Button btnCancelar;
+        private Button btnAdd;
         public ComboBox cbContato;
         public TextBox txtId;
+        private ErrorProvider avisoErro;
     }
 }

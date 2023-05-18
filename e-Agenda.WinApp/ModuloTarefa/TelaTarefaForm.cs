@@ -32,5 +32,25 @@ namespace e_Agenda.WinApp.ModuloTarefa
             if (_tarefa.id == 0)
                 _tarefa.id = int.Parse(txtId.Text);
         }
+
+        private void Validacoes_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Tarefa tarefa = new();
+
+            int contatorErros = 0;
+
+            if (tarefa.ValidarCampoVazio(txtTitulo, avisoErro))
+                contatorErros++;
+
+            if (tarefa.ValidarCampoVazio(cbPrioridade, avisoErro))
+                contatorErros++;
+
+            if (contatorErros == 2)
+                btnAdd.Enabled = true;
+            else
+                btnAdd.Enabled = false;
+
+            contatorErros = 0;
+        }
     }
 }

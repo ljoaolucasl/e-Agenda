@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
@@ -25,6 +26,11 @@ namespace e_Agenda.WinApp.ModuloContato
             this.email = email;
             this.cargo = cargo;
             this.empresa = empresa;
+        }
+
+        public Contato()
+        {
+
         }
     }
 }

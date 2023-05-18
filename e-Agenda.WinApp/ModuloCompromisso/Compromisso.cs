@@ -13,7 +13,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public string assunto;
         public string data;
         public string inicio;
-        public string termino;
+        public string final;
         public Contato contato;
         public string localizacao;
         public bool remoto;
@@ -23,10 +23,15 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             this.assunto = assunto;
             this.data = data;
             this.inicio = inicio;
-            this.termino = termino;
+            this.final = termino;
             this.contato = contato;
             this.localizacao = localizacao;
             this.remoto = remoto;
+        }
+
+        public Compromisso()
+        {
+            
         }
     }
 }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaContatoForm));
             txtId = new TextBox();
             txtNome = new TextBox();
             txtCargo = new TextBox();
@@ -40,8 +42,10 @@
             lbEmail = new Label();
             lbTelefone = new Label();
             lbNome = new Label();
-            button1 = new Button();
-            button2 = new Button();
+            btnAdd = new Button();
+            btnCancelar = new Button();
+            avisoErro = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)avisoErro).BeginInit();
             SuspendLayout();
             // 
             // txtId
@@ -54,10 +58,12 @@
             // 
             // txtNome
             // 
+            txtNome.BackColor = SystemColors.Window;
             txtNome.Location = new Point(80, 58);
             txtNome.Name = "txtNome";
             txtNome.Size = new Size(350, 23);
             txtNome.TabIndex = 1;
+            txtNome.Validating += Validacoes_Validating;
             // 
             // txtCargo
             // 
@@ -65,6 +71,7 @@
             txtCargo.Name = "txtCargo";
             txtCargo.Size = new Size(147, 23);
             txtCargo.TabIndex = 2;
+            txtCargo.Validating += Validacoes_Validating;
             // 
             // txtEmail
             // 
@@ -72,6 +79,7 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(147, 23);
             txtEmail.TabIndex = 4;
+            txtEmail.Validating += Validacoes_Validating;
             // 
             // txtEmpresa
             // 
@@ -79,6 +87,7 @@
             txtEmpresa.Name = "txtEmpresa";
             txtEmpresa.Size = new Size(125, 23);
             txtEmpresa.TabIndex = 5;
+            txtEmpresa.Validating += Validacoes_Validating;
             // 
             // txtTelefone
             // 
@@ -87,6 +96,7 @@
             txtTelefone.Name = "txtTelefone";
             txtTelefone.Size = new Size(125, 23);
             txtTelefone.TabIndex = 6;
+            txtTelefone.Validating += Validacoes_Validating;
             // 
             // lbId
             // 
@@ -142,36 +152,44 @@
             lbNome.TabIndex = 12;
             lbNome.Text = "Nome:";
             // 
-            // button1
+            // btnAdd
             // 
-            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button1.DialogResult = DialogResult.OK;
-            button1.Location = new Point(296, 210);
-            button1.Name = "button1";
-            button1.Size = new Size(70, 36);
-            button1.TabIndex = 13;
-            button1.Text = "Adicionar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnAdd.DialogResult = DialogResult.OK;
+            btnAdd.Enabled = false;
+            btnAdd.Location = new Point(296, 210);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(70, 36);
+            btnAdd.TabIndex = 13;
+            btnAdd.Text = "Adicionar";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += button1_Click;
             // 
-            // button2
+            // btnCancelar
             // 
-            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button2.DialogResult = DialogResult.Cancel;
-            button2.Location = new Point(372, 210);
-            button2.Name = "button2";
-            button2.Size = new Size(70, 36);
-            button2.TabIndex = 14;
-            button2.Text = "Cancelar";
-            button2.UseVisualStyleBackColor = true;
+            btnCancelar.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnCancelar.DialogResult = DialogResult.Cancel;
+            btnCancelar.Location = new Point(372, 210);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(70, 36);
+            btnCancelar.TabIndex = 14;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // avisoErro
+            // 
+            avisoErro.BlinkRate = 0;
+            avisoErro.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            avisoErro.ContainerControl = this;
+            avisoErro.Icon = (Icon)resources.GetObject("avisoErro.Icon");
             // 
             // TelaContatoForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(454, 258);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(btnCancelar);
+            Controls.Add(btnAdd);
             Controls.Add(lbNome);
             Controls.Add(lbTelefone);
             Controls.Add(lbEmail);
@@ -191,6 +209,7 @@
             ShowIcon = false;
             Text = "Cadastro de Contatos";
             TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)avisoErro).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -207,8 +226,9 @@
         private Label lbEmail;
         private Label lbTelefone;
         private Label lbNome;
-        private Button button1;
-        private Button button2;
+        private Button btnAdd;
+        private Button btnCancelar;
         public TextBox txtId;
+        private ErrorProvider avisoErro;
     }
 }

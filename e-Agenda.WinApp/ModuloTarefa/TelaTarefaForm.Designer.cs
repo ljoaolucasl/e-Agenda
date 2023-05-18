@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TelaTarefaForm));
             lbId = new Label();
             lbTitulo = new Label();
             lbPrioridade = new Label();
@@ -36,6 +38,8 @@
             txtId = new TextBox();
             btnCancelar = new Button();
             btnAdd = new Button();
+            avisoErro = new ErrorProvider(components);
+            ((System.ComponentModel.ISupportInitialize)avisoErro).BeginInit();
             SuspendLayout();
             // 
             // lbId
@@ -69,8 +73,9 @@
             // 
             txtTitulo.Location = new Point(82, 54);
             txtTitulo.Name = "txtTitulo";
-            txtTitulo.Size = new Size(329, 23);
+            txtTitulo.Size = new Size(310, 23);
             txtTitulo.TabIndex = 3;
+            txtTitulo.Validating += Validacoes_Validating;
             // 
             // cbPrioridade
             // 
@@ -80,6 +85,7 @@
             cbPrioridade.Name = "cbPrioridade";
             cbPrioridade.Size = new Size(100, 23);
             cbPrioridade.TabIndex = 4;
+            cbPrioridade.Validating += Validacoes_Validating;
             // 
             // txtId
             // 
@@ -104,6 +110,7 @@
             // 
             btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAdd.DialogResult = DialogResult.OK;
+            btnAdd.Enabled = false;
             btnAdd.Location = new Point(262, 161);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(70, 36);
@@ -111,6 +118,13 @@
             btnAdd.Text = "Adicionar";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
+            // 
+            // avisoErro
+            // 
+            avisoErro.BlinkRate = 0;
+            avisoErro.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+            avisoErro.ContainerControl = this;
+            avisoErro.Icon = (Icon)resources.GetObject("avisoErro.Icon");
             // 
             // TelaTarefaForm
             // 
@@ -133,6 +147,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cadastro de Tarefas";
             TopMost = true;
+            ((System.ComponentModel.ISupportInitialize)avisoErro).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -147,5 +162,6 @@
         private Button btnCancelar;
         private Button btnAdd;
         public TextBox txtId;
+        private ErrorProvider avisoErro;
     }
 }
