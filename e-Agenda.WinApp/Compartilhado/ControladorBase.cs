@@ -1,4 +1,6 @@
-﻿using System;
+﻿using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloTarefa;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,26 +8,93 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class ControladorBase
+    public abstract class ControladorBase<TEntidade, TRepositorio, TListagem, TTela> : IControladorBase
+        where TEntidade : Entidade 
+        where TRepositorio : RepositorioBase<TEntidade> 
+        where TListagem : IListagemBase<TEntidade>, new()
+        where TTela : ITelaBase<TEntidade>, new()
     {
+        protected TRepositorio _repositorio;
+        protected TListagem _listagem;
+
+        public ControladorBase(TRepositorio _repositorio, TListagem _listagem)
+        {
+            this._repositorio = _repositorio;
+            this._listagem = _listagem;
+        }
+
+        public ControladorBase(TRepositorio _repositorio, TListagem _listagem, RepositorioContato _repositorioContato)
+        {
+            this._repositorio = _repositorio;
+            this._listagem = _listagem;
+        }
+
         public abstract string ToolTipAdicionar { get; }
 
         public abstract string ToolTipEditar { get; }
 
         public abstract string ToolTipExcluir { get; }
 
-        public abstract void Adicionar();
+        public virtual void Adicionar()
+        {
+            TTela tela = new TTela();
 
-        public abstract void Editar();
+            tela.TtxtId.Text = _repositorio.Id.ToString();
 
-        public abstract void Excluir();
+            DialogResult opcaoEscolhida = tela.ShowDialog();
 
-        public abstract void Filtrar();
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                TEntidade? entidade = tela.Entidade;
 
-        public abstract void CarregarRegistros();
+                _repositorio.Adicionar(entidade);
 
-        public abstract UserControl ObterListagem();
+                CarregarRegistros();
+            }
+        }
+
+        public virtual void Editar()
+        {
+            TEntidade? entidade = _listagem.ObterContatoSelecionado();
+
+            TTela tela = new TTela();
+
+            tela.Entidade = entidade;
+
+            DialogResult opcaoEscolhida = tela.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                _repositorio.Editar(tela.Entidade);
+
+                CarregarRegistros();
+            }
+        }
+
+        public virtual void Excluir()
+        {
+            TEntidade? entidade = _listagem.ObterContatoSelecionado();
+
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja mesmo excluir?", "Exclusão de Tarefas",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (opcaoEscolhida == DialogResult.Yes)
+            {
+                _repositorio.Excluir(entidade);
+
+                CarregarRegistros();
+            }
+        }
+
+        public virtual void Filtrar() {  }
+
+        public virtual void CarregarRegistros()
+        {
+            _listagem.AtualizarLista(_repositorio.ObterListaRegistros());
+        }
 
         public abstract string ObterTipoCadastro();
+
+        public abstract UserControl ObterListagem();
     }
 }

@@ -5,13 +5,16 @@ using e_Agenda.WinApp.ModuloTarefa;
 
 namespace e_Agenda.WinApp
 {
-    public partial class TelaPrincipalForm : System.Windows.Forms.Form
+    public partial class TelaPrincipalForm : Form
     {
-        private ControladorBase _controladorBase;
+        private IControladorBase _controladorBase;
+        private UserControl _listagem;
         private RepositorioContato _repositorioContato = new();
         private RepositorioTarefa _repositorioTarefa = new();
         private RepositorioCompromisso _repositorioCompromisso = new();
-        private UserControl _listagem;
+        private ListagemContatoControl _listagemContato = new();
+        private ListagemTarefaControl _listagemTarefa = new();
+        private ListagemCompromissoControl _listagemCompromisso = new();
 
         public TelaPrincipalForm()
         {
@@ -20,21 +23,21 @@ namespace e_Agenda.WinApp
 
         private void contatosMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorContato(_repositorioContato);
+            _controladorBase = new ControladorContato(_repositorioContato, _listagemContato);
 
             ConfigurarTelaPrincipal();
         }
 
         private void tarefasMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorTarefa(_repositorioTarefa);
+            _controladorBase = new ControladorTarefa(_repositorioTarefa, _listagemTarefa);
 
             ConfigurarTelaPrincipal();
         }
 
         private void compromissosMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorCompromisso(_repositorioCompromisso, _repositorioContato);
+            _controladorBase = new ControladorCompromisso(_repositorioCompromisso, _listagemCompromisso, _repositorioContato);
 
             ConfigurarTelaPrincipal();
         }

@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloContato;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    public class ControladorTarefa : ControladorBase
+    public class ControladorTarefa : ControladorBase<Tarefa, RepositorioTarefa, ListagemTarefaControl, TelaTarefaForm>
     {
         private RepositorioTarefa _repositorioTarefa;
-        private ListagemTarefaControl _listagemTarefa = new();
+        private ListagemTarefaControl _listagemTarefa;
 
-        public ControladorTarefa(RepositorioTarefa repositorioTarefa)
+        public ControladorTarefa(RepositorioTarefa _repositorio, ListagemTarefaControl _listagem) : base(_repositorio, _listagem)
         {
-            this._repositorioTarefa = repositorioTarefa;
+            this._repositorioTarefa = _repositorio;
+            this._listagemTarefa = _listagem;
         }
 
         public override string ToolTipAdicionar { get { return "Adicionar nova Tarefa"; } }
@@ -23,75 +25,14 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         public override string ToolTipExcluir { get { return "Excluir Tarefa existente"; } }
 
-        public override void Adicionar()
-        {
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
-
-            telaTarefa.txtId.Text = _repositorioTarefa.Id.ToString();
-
-            DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                Tarefa? tarefa = telaTarefa.Tarefa;
-
-                _repositorioTarefa.Adicionar(tarefa);
-
-                CarregarRegistros();
-            }
-        }
-
-        public override void Editar()
-        {
-            Tarefa? tarefa = _listagemTarefa.ObterContatoSelecionado();
-
-            TelaTarefaForm telaTarefa = new TelaTarefaForm();
-
-            telaTarefa.Tarefa = tarefa;
-
-            DialogResult opcaoEscolhida = telaTarefa.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                _repositorioTarefa.Editar(telaTarefa.Tarefa);
-
-                CarregarRegistros();
-            }
-        }
-
-        public override void Excluir()
-        {
-            Tarefa? tarefa = _listagemTarefa.ObterContatoSelecionado();
-
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o contato {tarefa.titulo}?", "Exclusão de Tarefas",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (opcaoEscolhida == DialogResult.Yes)
-            {
-                _repositorioTarefa.Excluir(tarefa);
-
-                CarregarRegistros();
-            }
-        }
-
-        public override void CarregarRegistros()
-        {
-            _listagemTarefa.AtualizarLista(_repositorioTarefa.ObterListaRegistros());
-        }
-
-        public override ListagemTarefaControl ObterListagem()
-        {
-            return _listagemTarefa;
-        }
-
         public override string ObterTipoCadastro()
         {
             return "Cadastro de Tarefas";
         }
 
-        public override void Filtrar()
+        public override ListagemTarefaControl ObterListagem()
         {
-            throw new NotImplementedException();
+            return _listagem;
         }
     }
 }

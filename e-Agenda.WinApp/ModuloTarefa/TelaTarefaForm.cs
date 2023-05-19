@@ -1,12 +1,15 @@
-﻿using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    public partial class TelaTarefaForm : Form
+    public partial class TelaTarefaForm : Form, ITelaBase<Tarefa>
     {
         private Tarefa _tarefa;
 
-        public Tarefa? Tarefa
+        public TextBox TtxtId { get { return txtId; } }
+
+        public Tarefa? Entidade
         {
             set
             {

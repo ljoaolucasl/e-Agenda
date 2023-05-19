@@ -1,5 +1,6 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
 using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloTarefa;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +9,17 @@ using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class ControladorCompromisso : ControladorBase
+    public class ControladorCompromisso : ControladorBase<Compromisso, RepositorioCompromisso, ListagemCompromissoControl, TelaCompromissoForm>
     {
         private RepositorioCompromisso _repositorioCompromisso;
         private RepositorioContato _repositorioContato;
-        private ListagemCompromissoControl _listagemCompromisso = new();
+        private ListagemCompromissoControl _listagemCompromisso;
 
-        public ControladorCompromisso(RepositorioCompromisso repositorioCompromisso, RepositorioContato repositorioContato)
+        public ControladorCompromisso(RepositorioCompromisso _repositorio, ListagemCompromissoControl _listagem, RepositorioContato _repositorioContato) : base(_repositorio, _listagem, _repositorioContato)
         {
-            _repositorioCompromisso = repositorioCompromisso;
-            _repositorioContato = repositorioContato;
+            this._repositorioCompromisso = _repositorio;
+            this._listagemCompromisso = _listagem;
+            this._repositorioContato = _repositorioContato;
         }
 
         public override string ToolTipAdicionar { get { return "Adicionar novo Contato"; } }
@@ -38,7 +40,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                Compromisso? compromisso = telaCompromisso.Compromisso;
+                Compromisso? compromisso = telaCompromisso.Entidade;
 
                 _repositorioCompromisso.Adicionar(compromisso);
 
@@ -54,36 +56,16 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             CarregarContatosComboBox(telaCompromisso);
 
-            telaCompromisso.Compromisso = compromisso;
+            telaCompromisso.Entidade = compromisso;
 
             DialogResult opcaoEscolhida = telaCompromisso.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                _repositorioCompromisso.Editar(telaCompromisso.Compromisso);
+                _repositorioCompromisso.Editar(telaCompromisso.Entidade);
 
                 CarregarRegistros();
             }
-        }
-
-        public override void Excluir()
-        {
-            Compromisso? compromisso = _listagemCompromisso.ObterContatoSelecionado();
-
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o compromisso {compromisso.assunto}?", "Exclusão de Compromissos",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (opcaoEscolhida == DialogResult.Yes)
-            {
-                _repositorioCompromisso.Excluir(compromisso);
-
-                CarregarRegistros();
-            }
-        }
-
-        public override void CarregarRegistros()
-        {
-            _listagemCompromisso.AtualizarLista(_repositorioCompromisso.ObterListaRegistros());
         }
 
         private void CarregarContatosComboBox(TelaCompromissoForm telaCompromisso)
@@ -91,11 +73,6 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             telaCompromisso.cbContato.DisplayMember = "Nome";
             telaCompromisso.cbContato.ValueMember = "Nome";
             telaCompromisso.cbContato.DataSource = _repositorioContato.ObterListaRegistros();
-        }
-
-        public override ListagemCompromissoControl ObterListagem()
-        {
-            return _listagemCompromisso;
         }
 
         public override string ObterTipoCadastro()
@@ -134,6 +111,11 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             }
 
             _listagemCompromisso.AtualizarLista(listaFiltrada);
+        }
+
+        public override ListagemCompromissoControl ObterListagem()
+        {
+            return _listagem;
         }
     }
 }

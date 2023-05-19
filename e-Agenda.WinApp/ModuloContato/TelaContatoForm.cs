@@ -1,15 +1,16 @@
-﻿
+﻿using e_Agenda.WinApp.Compartilhado;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
-    public partial class TelaContatoForm : Form
+    public partial class TelaContatoForm : Form, ITelaBase<Contato>
     {
         private Contato _contato;
 
-        public Contato? Contato
+        public TextBox TtxtId { get { return txtId; } }
+
+        public Contato? Entidade
         {
             set
             {

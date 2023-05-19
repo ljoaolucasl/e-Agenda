@@ -1,15 +1,16 @@
-﻿
-using e_Agenda.WinApp.Compartilhado;
+﻿using e_Agenda.WinApp.Compartilhado;
 using e_Agenda.WinApp.ModuloContato;
 using System.Text.RegularExpressions;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public partial class TelaCompromissoForm : Form
+    public partial class TelaCompromissoForm : Form, ITelaBase<Compromisso>
     {
         private Compromisso _compromisso;
 
-        public Compromisso? Compromisso
+        public TextBox TtxtId { get { return txtId; } }
+
+        public Compromisso? Entidade
         {
             set
             {

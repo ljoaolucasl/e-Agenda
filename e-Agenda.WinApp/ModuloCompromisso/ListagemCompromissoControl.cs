@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloContato;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public partial class ListagemCompromissoControl : UserControl
+    public partial class ListagemCompromissoControl : UserControl, IListagemBase<Compromisso>
     {
         public ListagemCompromissoControl()
         {
