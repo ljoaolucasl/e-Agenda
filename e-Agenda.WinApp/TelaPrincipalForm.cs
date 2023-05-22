@@ -44,10 +44,9 @@ namespace e_Agenda.WinApp
 
         private void ConfigurarTelaPrincipal()
         {
-            if (_controladorBase is ControladorCompromisso)
-                btnFiltrar.Enabled = true;
-            else
-                btnFiltrar.Enabled = false;
+            ResetarBotoes();
+
+            ConfigurarBotaoFiltro();
 
             ConfigurarListagem();
 
@@ -104,7 +103,48 @@ namespace e_Agenda.WinApp
             _controladorBase.Filtrar();
         }
 
+        private void btnAdicionarItem_Click(object sender, EventArgs e)
+        {
+            _controladorBase.AdicionarItens();
+        }
+
+        private void btnAtualizarItens_Click(object sender, EventArgs e)
+        {
+            _controladorBase.AtualizarItens();
+        }
+
         private void HabilitaEDesabilitaBotoes(object sender, EventArgs e)
+        {
+            ConfigurarBotoesCrud();
+
+            ConfigurarBotaoFiltro();
+
+            ConfigurarBotoesItens();
+        }
+
+        private void ConfigurarBotoesItens()
+        {
+            if (_controladorBase is ControladorTarefa && ((ListView)_listagem.Controls[0]).SelectedItems.Count > 0)
+            {
+                btnAdicionarItem.Enabled = true;
+                btnAtualizarItens.Enabled = true;
+            }
+            else
+            {
+                btnAdicionarItem.Enabled = false;
+                btnAtualizarItens.Enabled = false;
+            }
+        }
+
+        private void ConfigurarBotaoFiltro()
+        {
+            if (_controladorBase is ControladorCompromisso || _controladorBase is ControladorTarefa)
+                btnFiltrar.Enabled = true;
+            else
+                btnFiltrar.Enabled = false;
+        }
+
+        private void ConfigurarBotoesCrud()
         {
             if (((ListView)_listagem.Controls[0]).SelectedItems.Count > 0)
             {
@@ -113,7 +153,8 @@ namespace e_Agenda.WinApp
             }
             else
             {
-                ResetarBotoes();
+                btnEditar.Enabled = false;
+                btnExcluir.Enabled = false;
             }
         }
 
@@ -121,6 +162,9 @@ namespace e_Agenda.WinApp
         {
             btnEditar.Enabled = false;
             btnExcluir.Enabled = false;
+            btnAdicionarItem.Enabled = false;
+            btnAtualizarItens.Enabled = false;
+            btnFiltrar.Enabled = false;
         }
     }
 }

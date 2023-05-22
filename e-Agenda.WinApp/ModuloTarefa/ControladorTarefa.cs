@@ -1,5 +1,7 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
+using e_Agenda.WinApp.ModuloTarefa.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,65 @@ namespace e_Agenda.WinApp.ModuloTarefa
         public override string ToolTipEditar { get { return "Editar Tarefa existente"; } }
 
         public override string ToolTipExcluir { get { return "Excluir Tarefa existente"; } }
+
+        public override void AdicionarItens()
+        {
+            TelaItemForm telaItem = new();
+            Tarefa tarefaSelecionada = null;
+
+            foreach (ListViewItem tarefa in _listagemTarefa.ListView.SelectedItems)
+            {
+                telaItem.lbTarefa.Text = tarefa.SubItems[1].Text;
+                tarefaSelecionada = (Tarefa)tarefa.Tag;
+            }
+
+            telaItem.Entidade = tarefaSelecionada.itens;
+
+            DialogResult opcaoEscolhida = telaItem.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                _repositorioTarefa.AdicionarItemTarefa(tarefaSelecionada, telaItem.Entidade);
+
+                CarregarRegistros();
+            }
+        }
+
+        public override void AtualizarItens()
+        {
+            TelaItemCheckForm telaItemCheck = new();
+            Tarefa tarefaSelecionada = null;
+
+            int qtdItensAtualizados = 0;
+
+            foreach (ListViewItem tarefa in _listagemTarefa.ListView.SelectedItems)
+            {
+                telaItemCheck.lbTarefa.Text = tarefa.SubItems[1].Text;
+                tarefaSelecionada = (Tarefa)tarefa.Tag;
+            }
+
+            telaItemCheck.Entidade = tarefaSelecionada.itens;
+
+            DialogResult opcaoEscolhida = telaItemCheck.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                foreach (string itemCheck in telaItemCheck.checkListItens.CheckedItems)
+                {
+                    foreach (ItemTarefa item in tarefaSelecionada.itens)
+                    {
+                        if (item.nome == itemCheck)
+                            item.check = true;
+                    }
+                    
+                    qtdItensAtualizados++;
+                }
+
+                _repositorioTarefa.AtualizarItens(tarefaSelecionada, qtdItensAtualizados);
+
+                CarregarRegistros();
+            }
+        }
 
         public override string ObterTipoCadastro()
         {

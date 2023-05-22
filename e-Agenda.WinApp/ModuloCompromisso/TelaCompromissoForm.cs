@@ -90,6 +90,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private bool ValidarLocalizacao(TextBox txtRemoto, TextBox txtPresencial, RadioButton radioRemoto)
         {
+            avisoErro.SetError(txtRemoto, "");
+            txtRemoto.BackColor = SystemColors.Window;
+
+            avisoErro.SetError(txtPresencial, "");
+            txtPresencial.BackColor = SystemColors.Window;
+
             if (radioRemoto.Checked)
             {
                 if (!string.IsNullOrEmpty(txtRemoto.Text))

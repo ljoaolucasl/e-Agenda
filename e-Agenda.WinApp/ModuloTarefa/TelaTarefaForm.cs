@@ -30,7 +30,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            _tarefa = new Tarefa(txtTitulo.Text, cbPrioridade.Text);
+            _tarefa = new Tarefa(txtTitulo.Text, cbPrioridade.Text, DateTime.Now.Date.ToString("d"), "", "0%");
 
             if (_tarefa.id == 0)
                 _tarefa.id = int.Parse(txtId.Text);
@@ -44,7 +44,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             if (tarefa.ValidarCampoVazio(txtTitulo, avisoErro))
                 contatorErros++;
-
+            
             if (tarefa.ValidarCampoVazio(cbPrioridade, avisoErro))
                 contatorErros++;
 

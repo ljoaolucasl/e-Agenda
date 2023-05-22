@@ -9,6 +9,8 @@ namespace e_Agenda.WinApp.ModuloContato
             InitializeComponent();
         }
 
+        public ListView ListView { get { return listContatos; } }
+
         public void AtualizarLista(List<Contato> contatos)
         {
             listContatos.Items.Clear();

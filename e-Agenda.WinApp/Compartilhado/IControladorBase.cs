@@ -23,6 +23,10 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public abstract void Filtrar();
 
+        public abstract void AdicionarItens();
+
+        public abstract void AtualizarItens();
+
         public abstract void CarregarRegistros();
 
         public abstract string ObterTipoCadastro();

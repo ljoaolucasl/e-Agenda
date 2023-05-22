@@ -17,6 +17,10 @@ namespace e_Agenda.WinApp.Compartilhado
         protected TRepositorio _repositorio;
         protected TListagem _listagem;
 
+        //protected event CarregarComboBox onCarregarComboBox;
+
+        protected event Action<TTela> onCarregarComboBox;
+
         public ControladorBase(TRepositorio _repositorio, TListagem _listagem)
         {
             this._repositorio = _repositorio;
@@ -39,6 +43,9 @@ namespace e_Agenda.WinApp.Compartilhado
         {
             TTela tela = new TTela();
 
+            if (onCarregarComboBox != null)
+                onCarregarComboBox(tela);
+
             tela.TtxtId.Text = _repositorio.Id.ToString();
 
             DialogResult opcaoEscolhida = tela.ShowDialog();
@@ -58,6 +65,9 @@ namespace e_Agenda.WinApp.Compartilhado
             TEntidade? entidade = _listagem.ObterContatoSelecionado();
 
             TTela tela = new TTela();
+
+            if (onCarregarComboBox != null)
+                onCarregarComboBox(tela);
 
             tela.Entidade = entidade;
 
@@ -87,6 +97,10 @@ namespace e_Agenda.WinApp.Compartilhado
         }
 
         public virtual void Filtrar() {  }
+
+        public virtual void AdicionarItens() { }
+
+        public virtual void AtualizarItens() { }
 
         public virtual void CarregarRegistros()
         {

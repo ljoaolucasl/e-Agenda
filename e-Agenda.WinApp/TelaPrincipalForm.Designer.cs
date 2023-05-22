@@ -42,8 +42,11 @@
             btnEditar = new ToolStripButton();
             btnExcluir = new ToolStripButton();
             toolStripSeparator1 = new ToolStripSeparator();
-            lblTipoCadastro = new ToolStripLabel();
             btnFiltrar = new ToolStripButton();
+            toolStripSeparator2 = new ToolStripSeparator();
+            btnAdicionarItem = new ToolStripButton();
+            btnAtualizarItens = new ToolStripButton();
+            lblTipoCadastro = new ToolStripLabel();
             plPrincipal = new Panel();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
@@ -117,7 +120,7 @@
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdd, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdd, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAdicionarItem, btnAtualizarItens, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(924, 45);
@@ -171,13 +174,6 @@
             toolStripSeparator1.Name = "toolStripSeparator1";
             toolStripSeparator1.Size = new Size(6, 45);
             // 
-            // lblTipoCadastro
-            // 
-            lblTipoCadastro.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTipoCadastro.Margin = new Padding(2);
-            lblTipoCadastro.Name = "lblTipoCadastro";
-            lblTipoCadastro.Size = new Size(0, 41);
-            // 
             // btnFiltrar
             // 
             btnFiltrar.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -191,6 +187,46 @@
             btnFiltrar.Text = "Excluir";
             btnFiltrar.ToolTipText = "Excluir";
             btnFiltrar.Click += btnFiltrar_Click;
+            // 
+            // toolStripSeparator2
+            // 
+            toolStripSeparator2.Name = "toolStripSeparator2";
+            toolStripSeparator2.Size = new Size(6, 45);
+            // 
+            // btnAdicionarItem
+            // 
+            btnAdicionarItem.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnAdicionarItem.Enabled = false;
+            btnAdicionarItem.Image = Properties.Resources.addItemIcon;
+            btnAdicionarItem.ImageScaling = ToolStripItemImageScaling.None;
+            btnAdicionarItem.ImageTransparentColor = Color.Magenta;
+            btnAdicionarItem.Name = "btnAdicionarItem";
+            btnAdicionarItem.Padding = new Padding(7);
+            btnAdicionarItem.Size = new Size(42, 42);
+            btnAdicionarItem.Text = "Adicionar";
+            btnAdicionarItem.ToolTipText = "Adicionar Itens à Tarefa";
+            btnAdicionarItem.Click += btnAdicionarItem_Click;
+            // 
+            // btnAtualizarItens
+            // 
+            btnAtualizarItens.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnAtualizarItens.Enabled = false;
+            btnAtualizarItens.Image = Properties.Resources.itemCheckIcon;
+            btnAtualizarItens.ImageScaling = ToolStripItemImageScaling.None;
+            btnAtualizarItens.ImageTransparentColor = Color.Magenta;
+            btnAtualizarItens.Name = "btnAtualizarItens";
+            btnAtualizarItens.Padding = new Padding(7);
+            btnAtualizarItens.Size = new Size(42, 42);
+            btnAtualizarItens.Text = "Atualizar";
+            btnAtualizarItens.ToolTipText = "Atualizar Itens da Tarefa";
+            btnAtualizarItens.Click += btnAtualizarItens_Click;
+            // 
+            // lblTipoCadastro
+            // 
+            lblTipoCadastro.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTipoCadastro.Margin = new Padding(2);
+            lblTipoCadastro.Name = "lblTipoCadastro";
+            lblTipoCadastro.Size = new Size(0, 41);
             // 
             // plPrincipal
             // 
@@ -243,5 +279,8 @@
         private ToolStripSeparator toolStripSeparator1;
         private ToolStripLabel lblTipoCadastro;
         private ToolStripButton btnFiltrar;
+        private ToolStripButton btnAdicionarItem;
+        private ToolStripButton btnAtualizarItens;
+        private ToolStripSeparator toolStripSeparator2;
     }
 }

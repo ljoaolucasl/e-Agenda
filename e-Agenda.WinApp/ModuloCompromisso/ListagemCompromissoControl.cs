@@ -19,6 +19,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             InitializeComponent();
         }
 
+        public ListView ListView { get { return listCompromissos; } }
+
         public void AtualizarLista(List<Compromisso> compromissos)
         {
             listCompromissos.Items.Clear();

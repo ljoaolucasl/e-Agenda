@@ -19,6 +19,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
             InitializeComponent();
         }
 
+        public ListView ListView { get { return listTarefas; } }
+
         public void AtualizarLista(List<Tarefa> tarefas)
         {
             listTarefas.Items.Clear();
@@ -28,6 +30,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 ListViewItem item = new ListViewItem(tarefa.id.ToString());
                 item.SubItems.Add(tarefa.titulo);
                 item.SubItems.Add(tarefa.prioridade);
+                item.SubItems.Add(tarefa.dataCriacao);
+                item.SubItems.Add(tarefa.dataConclusao);
+                item.SubItems.Add(tarefa.percentual);
                 item.Tag = tarefa;
                 listTarefas.Items.Add(item);
             }

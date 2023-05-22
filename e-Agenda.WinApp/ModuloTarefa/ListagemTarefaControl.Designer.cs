@@ -32,11 +32,15 @@
             columnId = new ColumnHeader();
             columnTitulo = new ColumnHeader();
             columnPrioridade = new ColumnHeader();
+            columnDataCriacao = new ColumnHeader();
+            columnDataConclusao = new ColumnHeader();
+            columnPercentual = new ColumnHeader();
+            columnStatus = new ColumnHeader();
             SuspendLayout();
             // 
             // listTarefas
             // 
-            listTarefas.Columns.AddRange(new ColumnHeader[] { columnId, columnTitulo, columnPrioridade });
+            listTarefas.Columns.AddRange(new ColumnHeader[] { columnId, columnTitulo, columnPrioridade, columnDataCriacao, columnDataConclusao, columnPercentual, columnStatus });
             listTarefas.Dock = DockStyle.Fill;
             listTarefas.FullRowSelect = true;
             listTarefas.GridLines = true;
@@ -54,12 +58,32 @@
             // columnTitulo
             // 
             columnTitulo.Text = "Título";
-            columnTitulo.Width = 500;
+            columnTitulo.Width = 360;
             // 
             // columnPrioridade
             // 
             columnPrioridade.Text = "Prioridade";
             columnPrioridade.Width = 100;
+            // 
+            // columnDataCriacao
+            // 
+            columnDataCriacao.Text = "Data Criação";
+            columnDataCriacao.Width = 100;
+            // 
+            // columnDataConclusao
+            // 
+            columnDataConclusao.Text = "Data Conclusão";
+            columnDataConclusao.Width = 100;
+            // 
+            // columnPercentual
+            // 
+            columnPercentual.Text = "Percentual Concluído";
+            columnPercentual.Width = 100;
+            // 
+            // columnStatus
+            // 
+            columnStatus.Text = "Status";
+            columnStatus.Width = 100;
             // 
             // ListagemTarefaControl
             // 
@@ -77,5 +101,9 @@
         private ColumnHeader columnId;
         private ColumnHeader columnTitulo;
         private ColumnHeader columnPrioridade;
+        private ColumnHeader columnDataCriacao;
+        private ColumnHeader columnDataConclusao;
+        private ColumnHeader columnPercentual;
+        private ColumnHeader columnStatus;
     }
 }

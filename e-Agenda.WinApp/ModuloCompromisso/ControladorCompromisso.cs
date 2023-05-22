@@ -20,6 +20,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             this._repositorioCompromisso = _repositorio;
             this._listagemCompromisso = _listagem;
             this._repositorioContato = _repositorioContato;
+
+            this.onCarregarComboBox += CarregarComboBox;
         }
 
         public override string ToolTipAdicionar { get { return "Adicionar novo Contato"; } }
@@ -28,51 +30,14 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public override string ToolTipExcluir { get { return "Excluir Contato existente"; } }
 
-        public override void Adicionar()
-        {
-            TelaCompromissoForm telaCompromisso = new TelaCompromissoForm();
 
-            telaCompromisso.txtId.Text = _repositorioCompromisso.Id.ToString();
-
-            CarregarContatosComboBox(telaCompromisso);
-
-            DialogResult opcaoEscolhida = telaCompromisso.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                Compromisso? compromisso = telaCompromisso.Entidade;
-
-                _repositorioCompromisso.Adicionar(compromisso);
-
-                CarregarRegistros();
-            }
-        }
-
-        public override void Editar()
-        {
-            Compromisso? compromisso = _listagemCompromisso.ObterContatoSelecionado();
-
-            TelaCompromissoForm telaCompromisso = new TelaCompromissoForm();
-
-            CarregarContatosComboBox(telaCompromisso);
-
-            telaCompromisso.Entidade = compromisso;
-
-            DialogResult opcaoEscolhida = telaCompromisso.ShowDialog();
-
-            if (opcaoEscolhida == DialogResult.OK)
-            {
-                _repositorioCompromisso.Editar(telaCompromisso.Entidade);
-
-                CarregarRegistros();
-            }
-        }
-
-        private void CarregarContatosComboBox(TelaCompromissoForm telaCompromisso)
+        public void CarregarComboBox(TelaCompromissoForm telaCompromisso)
         {
             telaCompromisso.cbContato.DisplayMember = "Nome";
             telaCompromisso.cbContato.ValueMember = "Nome";
             telaCompromisso.cbContato.DataSource = _repositorioContato.ObterListaRegistros();
+
+
         }
 
         public override string ObterTipoCadastro()
