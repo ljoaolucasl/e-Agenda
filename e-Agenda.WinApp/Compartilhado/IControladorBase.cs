@@ -1,11 +1,4 @@
-﻿using e_Agenda.WinApp.ModuloCompromisso;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace e_Agenda.WinApp.Compartilhado
+﻿namespace e_Agenda.WinApp.Compartilhado
 {
     public interface IControladorBase
     {

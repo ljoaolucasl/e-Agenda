@@ -1,10 +1,4 @@
 ﻿using e_Agenda.WinApp.ModuloContato;
-using e_Agenda.WinApp.ModuloTarefa;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace e_Agenda.WinApp.Compartilhado
 {
@@ -16,8 +10,6 @@ namespace e_Agenda.WinApp.Compartilhado
     {
         protected TRepositorio _repositorio;
         protected TListagem _listagem;
-
-        //protected event CarregarComboBox onCarregarComboBox;
 
         protected event Action<TTela> onCarregarComboBox;
 
