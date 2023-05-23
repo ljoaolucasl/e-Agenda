@@ -18,7 +18,15 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 dtData.Text = value.data;
                 dtInicio.Text = value.inicio;
                 dtFinal.Text = value.final;
-                cbContato.Text = value.contato == null ? "" : value.contato.nome;
+                if (value.contato == null)
+                {
+                    cbContato.SelectedIndex = -1;
+                    checkContato.Checked = false;
+                } else
+                {
+                    cbContato.Text = value.contato.Nome;
+                    checkContato.Checked = true;
+                }
                 txtPresencial.Text = value.remoto ? "" : value.localizacao;
                 txtRemoto.Text = value.remoto ? value.localizacao : "";
             }

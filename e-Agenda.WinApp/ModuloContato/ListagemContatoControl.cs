@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
@@ -26,6 +27,8 @@ namespace e_Agenda.WinApp.ModuloContato
                 item.Tag = contato;
                 listContatos.Items.Add(item);
             }
+
+            TelaPrincipalForm.AtualizarStatus($"Visualizando {contatos.Count} Contatos");
         }
 
         public Contato? ObterContatoSelecionado()

@@ -130,6 +130,8 @@ namespace e_Agenda.WinApp
             ConfigurarBotaoFiltro();
 
             ConfigurarBotoesItens();
+
+            AtualizarStatus($"{((ListView)(_listagem.Controls[0])).SelectedItems.Count} Iten(s) Selecionado(s)");
         }
 
         private void ConfigurarBotoesItens()
@@ -175,6 +177,8 @@ namespace e_Agenda.WinApp
             btnAdicionarItem.Enabled = false;
             btnAtualizarItens.Enabled = false;
             btnFiltrar.Enabled = false;
+
+            ConfigurarBotaoFiltro();
         }
     }
 }

@@ -43,6 +43,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         {
             TelaFiltroCompromissoForm telaFiltroCompromisso = new();
 
+            TelaPrincipalForm.AtualizarStatus($"Filtrando Compromissos");
+
             DialogResult opcaoEscolhida = telaFiltroCompromisso.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)

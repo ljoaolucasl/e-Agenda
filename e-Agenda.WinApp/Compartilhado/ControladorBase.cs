@@ -40,6 +40,8 @@ namespace e_Agenda.WinApp.Compartilhado
 
             tela.TtxtId.Text = _repositorio.Id.ToString();
 
+            TelaPrincipalForm.AtualizarStatus($"Cadastrando {typeof(TEntidade).Name}");
+
             DialogResult opcaoEscolhida = tela.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
@@ -48,8 +50,8 @@ namespace e_Agenda.WinApp.Compartilhado
 
                 _repositorio.Adicionar(entidade);
 
-                CarregarRegistros();
             }
+                CarregarRegistros();
         }
 
         public virtual void Editar()
@@ -63,29 +65,33 @@ namespace e_Agenda.WinApp.Compartilhado
 
             tela.Entidade = entidade;
 
+            TelaPrincipalForm.AtualizarStatus($"Editando {typeof(TEntidade).Name}");
+
             DialogResult opcaoEscolhida = tela.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
                 _repositorio.Editar(tela.Entidade);
 
-                CarregarRegistros();
             }
+                CarregarRegistros();
         }
 
         public virtual void Excluir()
         {
             TEntidade? entidade = _listagem.ObterContatoSelecionado();
 
-            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja mesmo excluir?", "Exclusão de Tarefas",
+            TelaPrincipalForm.AtualizarStatus($"Excluindo {typeof(TEntidade).Name}");
+
+            DialogResult opcaoEscolhida = MessageBox.Show($"Deseja mesmo excluir?", $"Exclusão de {typeof(TEntidade).Name}",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (opcaoEscolhida == DialogResult.Yes)
             {
                 _repositorio.Excluir(entidade);
 
-                CarregarRegistros();
             }
+                CarregarRegistros();
         }
 
         public virtual void Filtrar() {  }

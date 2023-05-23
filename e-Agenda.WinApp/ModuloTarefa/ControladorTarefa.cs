@@ -34,14 +34,16 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             telaItem.Entidade = tarefaSelecionada.itens;
 
+            TelaPrincipalForm.AtualizarStatus($"Cadastrando Itens");
+
             DialogResult opcaoEscolhida = telaItem.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
             {
                 _repositorioTarefa.AdicionarItemTarefa(tarefaSelecionada, telaItem.Entidade);
 
-                CarregarRegistros();
             }
+                CarregarRegistros();
         }
 
         public override void AtualizarItensCheck()
@@ -59,6 +61,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             telaItemCheck.Entidade = tarefaSelecionada.itens;
 
+            TelaPrincipalForm.AtualizarStatus($"Atualizando Itens");
+
             DialogResult opcaoEscolhida = telaItemCheck.ShowDialog();
 
             if (opcaoEscolhida == DialogResult.OK)
@@ -70,19 +74,21 @@ namespace e_Agenda.WinApp.ModuloTarefa
                         if (item.nome == itemCheck)
                             item.check = true;
                     }
-                    
+
                     qtdItensAtualizados++;
                 }
 
                 _repositorioTarefa.AtualizarItens(tarefaSelecionada, qtdItensAtualizados);
 
-                CarregarRegistros();
             }
+            CarregarRegistros();
         }
 
         public override void Filtrar()
         {
             TelaFiltroTarefaForm telaFiltroTarefa = new();
+
+            TelaPrincipalForm.AtualizarStatus($"Filtrando Tarefas");
 
             DialogResult opcaoEscolhida = telaFiltroTarefa.ShowDialog();
 
@@ -92,6 +98,8 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
                 CarregarTarefasComFiltro(filtroSelecionado);
             }
+            else
+                CarregarRegistros();
         }
 
         private void CarregarTarefasComFiltro(FiltroTarefa filtroSelecionado)

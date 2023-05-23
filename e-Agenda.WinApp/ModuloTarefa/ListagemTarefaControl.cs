@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -28,8 +29,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
 
             listTarefas.ListViewItemSorter = new CompararTarefaPorPrioridade();
-
             listTarefas.Sort();
+
+            TelaPrincipalForm.AtualizarStatus($"Visualizando {tarefas.Count} Tarefas");
         }
 
         public Tarefa? ObterContatoSelecionado()

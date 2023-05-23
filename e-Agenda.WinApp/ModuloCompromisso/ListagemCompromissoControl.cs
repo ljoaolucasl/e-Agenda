@@ -26,6 +26,8 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 item.Tag = compromisso;
                 listCompromissos.Items.Add(item);
             }
+
+            TelaPrincipalForm.AtualizarStatus($"Visualizando {compromissos.Count} Compromissos");
         }
 
         public Compromisso? ObterContatoSelecionado()
