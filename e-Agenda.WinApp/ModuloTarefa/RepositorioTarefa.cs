@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloTarefa.Item;
 
 namespace e_Agenda.WinApp.ModuloTarefa
@@ -37,6 +38,30 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             Tarefa tarefa4 = new Tarefa("Finalizar Livro", "Alta", "16/05/2023", "", "0%");
             Adicionar(tarefa4);
+        }
+
+        public List<Tarefa> FiltrarTarefasPendentes()
+        {
+            List<Tarefa> TarefasPendentes = new List<Tarefa>();
+
+            foreach (Tarefa tarefa in ObterListaRegistros().Cast<Tarefa>().Where(tarefa => tarefa.percentual != "100%"))
+            {
+                TarefasPendentes.Add(tarefa);
+            }
+
+            return TarefasPendentes;
+        }
+
+        public List<Tarefa> FiltrarTarefasConcluidas()
+        {
+            List<Tarefa> TarefasConcluidas = new List<Tarefa>();
+
+            foreach (Tarefa tarefa in ObterListaRegistros().Cast<Tarefa>().Where(tarefa => tarefa.percentual == "100%"))
+            {
+                TarefasConcluidas.Add(tarefa);
+            }
+
+            return TarefasConcluidas;
         }
     }
 }

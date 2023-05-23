@@ -3,7 +3,7 @@ using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class ControladorCompromisso : ControladorBase<Compromisso, RepositorioCompromisso, ListagemCompromissoControl, TelaCompromissoForm>
+    public class ControladorCompromisso : ControladorBase<Tarefa, RepositorioCompromisso, ListagemCompromissoControl, TelaCompromissoForm>
     {
         private RepositorioCompromisso _repositorioCompromisso;
         private RepositorioContato _repositorioContato;
@@ -57,7 +57,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         private void CarregarCompromissosComFiltro(FiltroCompromisso filtroSelecionado, DateTime dataInicial, DateTime dataFinal)
         {
-            List<Compromisso> listaFiltrada = new List<Compromisso>();
+            List<Tarefa> listaFiltrada = new List<Tarefa>();
 
             switch (filtroSelecionado)
             {

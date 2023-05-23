@@ -143,7 +143,7 @@
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(70, 36);
             btnAdd.TabIndex = 22;
-            btnAdd.Text = "Adicionar";
+            btnAdd.Text = "Aplicar";
             btnAdd.UseVisualStyleBackColor = true;
             // 
             // TelaFiltroCompromissoForm
@@ -163,7 +163,7 @@
             Name = "TelaFiltroCompromissoForm";
             ShowIcon = false;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "TelaFiltroCompromisso";
+            Text = "Filtrar Compromissos";
             gbDatas.ResumeLayout(false);
             gbDatas.PerformLayout();
             ResumeLayout(false);

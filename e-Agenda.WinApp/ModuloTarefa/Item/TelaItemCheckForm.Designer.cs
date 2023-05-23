@@ -33,7 +33,6 @@
             lbTarefa = new Label();
             btnCancelar = new Button();
             btnAdd = new Button();
-            btnCheck = new Button();
             checkListItens = new CheckedListBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -41,7 +40,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(125, 82);
+            label1.Location = new Point(122, 102);
             label1.Name = "label1";
             label1.Size = new Size(151, 15);
             label1.TabIndex = 27;
@@ -89,15 +88,6 @@
             btnAdd.Text = "Gravar";
             btnAdd.UseVisualStyleBackColor = true;
             // 
-            // btnCheck
-            // 
-            btnCheck.Location = new Point(156, 108);
-            btnCheck.Name = "btnCheck";
-            btnCheck.Size = new Size(84, 29);
-            btnCheck.TabIndex = 21;
-            btnCheck.Text = "Check";
-            btnCheck.UseVisualStyleBackColor = true;
-            // 
             // checkListItens
             // 
             checkListItens.FormattingEnabled = true;
@@ -116,7 +106,6 @@
             Controls.Add(groupBox1);
             Controls.Add(btnCancelar);
             Controls.Add(btnAdd);
-            Controls.Add(btnCheck);
             FormBorderStyle = FormBorderStyle.FixedDialog;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -135,7 +124,6 @@
         private GroupBox groupBox1;
         private Button btnCancelar;
         private Button btnAdd;
-        private Button btnCheck;
         internal Label lbTarefa;
         public CheckedListBox checkListItens;
     }

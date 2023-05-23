@@ -92,7 +92,7 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public virtual void AdicionarItens() { }
 
-        public virtual void AtualizarItens() { }
+        public virtual void AtualizarItensCheck() { }
 
         public virtual void CarregarRegistros()
         {

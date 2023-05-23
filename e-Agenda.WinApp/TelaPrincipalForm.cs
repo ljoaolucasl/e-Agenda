@@ -106,11 +106,13 @@ namespace e_Agenda.WinApp
         private void btnAdicionarItem_Click(object sender, EventArgs e)
         {
             _controladorBase.AdicionarItens();
+            ResetarBotoes();
         }
 
         private void btnAtualizarItens_Click(object sender, EventArgs e)
         {
-            _controladorBase.AtualizarItens();
+            _controladorBase.AtualizarItensCheck();
+            ResetarBotoes();
         }
 
         private void HabilitaEDesabilitaBotoes(object sender, EventArgs e)

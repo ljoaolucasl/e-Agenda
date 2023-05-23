@@ -18,7 +18,7 @@
 
         public abstract void AdicionarItens();
 
-        public abstract void AtualizarItens();
+        public abstract void AtualizarItensCheck();
 
         public abstract void CarregarRegistros();
 

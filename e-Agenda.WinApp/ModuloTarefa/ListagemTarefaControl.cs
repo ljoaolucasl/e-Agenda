@@ -26,6 +26,10 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 item.Tag = tarefa;
                 listTarefas.Items.Add(item);
             }
+
+            listTarefas.ListViewItemSorter = new CompararTarefaPorPrioridade();
+
+            listTarefas.Sort();
         }
 
         public Tarefa? ObterContatoSelecionado()

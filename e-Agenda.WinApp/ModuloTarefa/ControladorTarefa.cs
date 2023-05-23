@@ -1,4 +1,5 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloTarefa.Item;
 
 namespace e_Agenda.WinApp.ModuloTarefa
@@ -43,7 +44,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
         }
 
-        public override void AtualizarItens()
+        public override void AtualizarItensCheck()
         {
             TelaItemCheckForm telaItemCheck = new();
             Tarefa tarefaSelecionada = null;
@@ -77,6 +78,40 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
                 CarregarRegistros();
             }
+        }
+
+        public override void Filtrar()
+        {
+            TelaFiltroTarefaForm telaFiltroTarefa = new();
+
+            DialogResult opcaoEscolhida = telaFiltroTarefa.ShowDialog();
+
+            if (opcaoEscolhida == DialogResult.OK)
+            {
+                FiltroTarefa filtroSelecionado = telaFiltroTarefa.FiltroSelecionado;
+
+                CarregarTarefasComFiltro(filtroSelecionado);
+            }
+        }
+
+        private void CarregarTarefasComFiltro(FiltroTarefa filtroSelecionado)
+        {
+            List<Tarefa> listaFiltrada = new List<Tarefa>();
+
+            switch (filtroSelecionado)
+            {
+                case FiltroTarefa.Todos:
+                    listaFiltrada = _repositorioTarefa.ObterListaRegistros();
+                    break;
+                case FiltroTarefa.Pendentes:
+                    listaFiltrada = _repositorioTarefa.FiltrarTarefasPendentes();
+                    break;
+                case FiltroTarefa.Concluidas:
+                    listaFiltrada = _repositorioTarefa.FiltrarTarefasConcluidas();
+                    break;
+            }
+
+            _listagemTarefa.AtualizarLista(listaFiltrada);
         }
 
         public override string ObterTipoCadastro()
