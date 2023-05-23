@@ -65,8 +65,8 @@
             // lbStatus
             // 
             lbStatus.Name = "lbStatus";
-            lbStatus.Size = new Size(118, 17);
-            lbStatus.Text = "toolStripStatusLabel1";
+            lbStatus.Size = new Size(39, 17);
+            lbStatus.Text = "Status";
             // 
             // menuStrip1
             // 
@@ -184,8 +184,8 @@
             btnFiltrar.Name = "btnFiltrar";
             btnFiltrar.Padding = new Padding(7);
             btnFiltrar.Size = new Size(42, 42);
-            btnFiltrar.Text = "Excluir";
-            btnFiltrar.ToolTipText = "Excluir";
+            btnFiltrar.Text = "Filtrar";
+            btnFiltrar.ToolTipText = "Filtrar";
             btnFiltrar.Click += btnFiltrar_Click;
             // 
             // toolStripSeparator2

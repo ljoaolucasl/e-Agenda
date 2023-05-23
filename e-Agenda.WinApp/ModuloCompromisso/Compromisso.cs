@@ -3,7 +3,7 @@ using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class Tarefa : Entidade
+    public class Compromisso : Entidade
     {
         public string assunto;
         public string data;
@@ -13,7 +13,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
         public string localizacao;
         public bool remoto;
 
-        public Tarefa(string assunto, string data, string inicio, string termino, Contato contato, string localizacao, bool remoto)
+        public Compromisso(string assunto, string data, string inicio, string termino, Contato contato, string localizacao, bool remoto)
         {
             this.assunto = assunto;
             this.data = data;
@@ -24,7 +24,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             this.remoto = remoto;
         }
 
-        public Tarefa()
+        public Compromisso()
         {
             
         }

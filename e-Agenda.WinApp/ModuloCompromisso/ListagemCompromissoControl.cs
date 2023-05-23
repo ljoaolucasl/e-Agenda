@@ -2,7 +2,7 @@
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public partial class ListagemCompromissoControl : UserControl, IListagemBase<Tarefa>
+    public partial class ListagemCompromissoControl : UserControl, IListagemBase<Compromisso>
     {
         public ListagemCompromissoControl()
         {
@@ -11,11 +11,11 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
         public ListView ListView { get { return listCompromissos; } }
 
-        public void AtualizarLista(List<Tarefa> compromissos)
+        public void AtualizarLista(List<Compromisso> compromissos)
         {
             listCompromissos.Items.Clear();
 
-            foreach (Tarefa compromisso in compromissos)
+            foreach (Compromisso compromisso in compromissos)
             {
                 ListViewItem item = new ListViewItem(compromisso.id.ToString());
                 item.SubItems.Add(compromisso.assunto);
@@ -28,10 +28,10 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             }
         }
 
-        public Tarefa? ObterContatoSelecionado()
+        public Compromisso? ObterContatoSelecionado()
         {
             ListViewItem itemSelecionado = listCompromissos.SelectedItems[0];
-            return listCompromissos.SelectedItems.Count > 0 ? (Tarefa)itemSelecionado.Tag : null;
+            return listCompromissos.SelectedItems.Count > 0 ? (Compromisso)itemSelecionado.Tag : null;
         }
     }
 }

@@ -2,28 +2,28 @@
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class RepositorioCompromisso : RepositorioBase<Tarefa>
+    public class RepositorioCompromisso : RepositorioBase<Compromisso>
     {
         public RepositorioCompromisso()
         {
-            Tarefa compromisso1 = new Tarefa("Reunião da Academia", "24/06/2023", "19:00", "21:00", null, "Uniplac", false);
+            Compromisso compromisso1 = new Compromisso("Reunião da Academia", "24/06/2023", "19:00", "21:00", null, "Uniplac", false);
             Adicionar(compromisso1);
 
-            Tarefa compromisso2 = new Tarefa("Aniversário Surpresa", "24/05/2023", "20:00", "23:00", null, "Casa do Marcos", false);
+            Compromisso compromisso2 = new Compromisso("Aniversário Surpresa", "24/05/2023", "20:00", "23:00", null, "Casa do Marcos", false);
             Adicionar(compromisso2);
 
-            Tarefa compromisso3 = new Tarefa("Reunião do Trabalho", "20/05/2023", "15:00", "16:30", null, "Meet", true);
+            Compromisso compromisso3 = new Compromisso("Reunião do Trabalho", "20/05/2023", "15:00", "16:30", null, "Meet", true);
             Adicionar(compromisso3);
 
-            Tarefa compromisso4 = new Tarefa("Casamento", "24/09/2023", "10:00", "21:00", null, "Retiro Bom Ar", false);
+            Compromisso compromisso4 = new Compromisso("Casamento", "24/09/2023", "10:00", "21:00", null, "Retiro Bom Ar", false);
             Adicionar(compromisso4);
         }
 
-        public List<Tarefa> FiltrarCompromissosFuturos(DateTime dataInicial, DateTime dataFinal)
+        public List<Compromisso> FiltrarCompromissosFuturos(DateTime dataInicial, DateTime dataFinal)
         {
-            List<Tarefa> compromissosFuturos = new List<Tarefa>();
+            List<Compromisso> compromissosFuturos = new List<Compromisso>();
 
-            foreach (Tarefa compromisso in ObterListaRegistros().Cast<Tarefa>().Where(compromisso => Convert.ToDateTime(compromisso.data) >= dataInicial && Convert.ToDateTime(compromisso.data) <= dataFinal))
+            foreach (Compromisso compromisso in ObterListaRegistros().Cast<Compromisso>().Where(compromisso => Convert.ToDateTime(compromisso.data) >= dataInicial && Convert.ToDateTime(compromisso.data) <= dataFinal))
             {
                 compromissosFuturos.Add(compromisso);
             }
@@ -31,11 +31,11 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             return compromissosFuturos;
         }
 
-        public List<Tarefa> FiltrarCompromissosPassados(DateTime dataDeHoje)
+        public List<Compromisso> FiltrarCompromissosPassados(DateTime dataDeHoje)
         {
-            List<Tarefa> compromissosPassados = new List<Tarefa>();
+            List<Compromisso> compromissosPassados = new List<Compromisso>();
 
-            foreach (Tarefa compromisso in ObterListaRegistros().Cast<Tarefa>().Where(compromisso => Convert.ToDateTime(compromisso.data) < dataDeHoje))
+            foreach (Compromisso compromisso in ObterListaRegistros().Cast<Compromisso>().Where(compromisso => Convert.ToDateTime(compromisso.data) < dataDeHoje))
             {
                 compromissosPassados.Add(compromisso);
             }

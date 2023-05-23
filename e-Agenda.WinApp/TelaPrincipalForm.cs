@@ -16,9 +16,17 @@ namespace e_Agenda.WinApp
         private ListagemTarefaControl _listagemTarefa = new();
         private ListagemCompromissoControl _listagemCompromisso = new();
 
+        private static TelaPrincipalForm _telaPrincipal;
+
         public TelaPrincipalForm()
         {
             InitializeComponent();
+            _telaPrincipal = this;
+        }
+
+        public static void AtualizarStatus(string status)
+        {
+            _telaPrincipal.lbStatus.Text = status;
         }
 
         private void contatosMenuItem_Click(object sender, EventArgs e)

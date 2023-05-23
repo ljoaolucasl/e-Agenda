@@ -3,13 +3,13 @@ using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public partial class TelaCompromissoForm : Form, ITelaBase<Tarefa>
+    public partial class TelaCompromissoForm : Form, ITelaBase<Compromisso>
     {
-        private Tarefa _compromisso;
+        private Compromisso _compromisso;
 
         public TextBox TtxtId { get { return txtId; } }
 
-        public Tarefa? Entidade
+        public Compromisso? Entidade
         {
             set
             {
@@ -41,7 +41,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             bool remoto = radioPresencial.Checked == true ? false : true;
 
-            _compromisso = new Tarefa(txtAssunto.Text, dtData.Text, dtInicio.Text, dtFinal.Text, contato, localizacao, remoto);
+            _compromisso = new Compromisso(txtAssunto.Text, dtData.Text, dtInicio.Text, dtFinal.Text, contato, localizacao, remoto);
 
             if (_compromisso.id == 0)
                 _compromisso.id = int.Parse(txtId.Text);
@@ -54,13 +54,13 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             else
             {
                 cbContato.Enabled = false;
-                cbContato.SelectedValue = "";
+                cbContato.SelectedIndex = -1;
             }
         }
 
         private void Validacoes_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Tarefa compromisso = new();
+            Compromisso compromisso = new();
 
             int contatorErros = 0;
 

@@ -88,6 +88,7 @@
             // 
             // cbContato
             // 
+            cbContato.DropDownStyle = ComboBoxStyle.DropDownList;
             cbContato.FormattingEnabled = true;
             cbContato.Location = new Point(93, 192);
             cbContato.Name = "cbContato";
@@ -149,6 +150,7 @@
             dtInicio.Format = DateTimePickerFormat.Custom;
             dtInicio.Location = new Point(93, 120);
             dtInicio.Name = "dtInicio";
+            dtInicio.ShowUpDown = true;
             dtInicio.Size = new Size(127, 23);
             dtInicio.TabIndex = 9;
             dtInicio.Validating += Validacoes_Validating;
@@ -204,6 +206,7 @@
             dtFinal.Format = DateTimePickerFormat.Custom;
             dtFinal.Location = new Point(302, 120);
             dtFinal.Name = "dtFinal";
+            dtFinal.ShowUpDown = true;
             dtFinal.Size = new Size(127, 23);
             dtFinal.TabIndex = 17;
             dtFinal.Validating += Validacoes_Validating;
