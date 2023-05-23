@@ -1,6 +1,7 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloTarefa.Item;
+using System.Collections;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -43,7 +44,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
                 _repositorioTarefa.AdicionarItemTarefa(tarefaSelecionada, telaItem.Entidade);
 
             }
-                CarregarRegistros();
+            CarregarRegistros();
         }
 
         public override void AtualizarItensCheck()
@@ -67,15 +68,15 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             if (opcaoEscolhida == DialogResult.OK)
             {
-                foreach (string itemCheck in telaItemCheck.checkListItens.CheckedItems)
+                for (int i = 0; i < tarefaSelecionada.itens.Count; i++)
                 {
-                    foreach (ItemTarefa item in tarefaSelecionada.itens)
+                    if (telaItemCheck.checkListItens.GetItemChecked(i))
                     {
-                        if (item.nome == itemCheck)
-                            item.check = true;
+                        tarefaSelecionada.itens[i].check = true;
+                        qtdItensAtualizados++;
                     }
-
-                    qtdItensAtualizados++;
+                    else
+                        tarefaSelecionada.itens[i].check = false;
                 }
 
                 _repositorioTarefa.AtualizarItens(tarefaSelecionada, qtdItensAtualizados);

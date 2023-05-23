@@ -15,6 +15,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
         {
             double resultado = Math.Round(((double)qtdItensCheck / tarefaSelecionada.itens.Count) * 100, 0);
 
+            if (Double.IsNaN(resultado))
+                resultado = 0;
+            
             tarefaSelecionada.percentual = resultado.ToString() + "%";
 
             if (tarefaSelecionada.percentual == "100%")
