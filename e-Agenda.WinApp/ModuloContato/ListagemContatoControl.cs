@@ -19,7 +19,7 @@ namespace e_Agenda.WinApp.ModuloContato
             foreach (Contato contato in contatos)
             {
                 ListViewItem item = new ListViewItem(contato.id.ToString());
-                item.SubItems.Add(contato.nome);
+                item.SubItems.Add(contato.Nome);
                 item.SubItems.Add(contato.telefone);
                 item.SubItems.Add(contato.email);
                 item.SubItems.Add(contato.cargo);

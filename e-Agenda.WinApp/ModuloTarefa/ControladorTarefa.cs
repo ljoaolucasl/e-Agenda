@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    public class ControladorTarefa : ControladorBase<Tarefa, RepositorioTarefa, ListagemTarefaControl, TelaTarefaForm>
+    public class ControladorTarefa : ControladorBase<Tarefa, RepositorioTarefa, ListagemTarefaControl, TelaTarefaForm, NenhumRepositorio>
     {
         private RepositorioTarefa _repositorioTarefa;
         private ListagemTarefaControl _listagemTarefa;
@@ -15,12 +15,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
             this._repositorioTarefa = _repositorio;
             this._listagemTarefa = _listagem;
         }
-
-        public override string ToolTipAdicionar { get { return "Adicionar nova Tarefa"; } }
-
-        public override string ToolTipEditar { get { return "Editar Tarefa existente"; } }
-
-        public override string ToolTipExcluir { get { return "Excluir Tarefa existente"; } }
 
         public override void AdicionarItens()
         {
@@ -121,11 +115,6 @@ namespace e_Agenda.WinApp.ModuloTarefa
             }
 
             _listagemTarefa.AtualizarLista(listaFiltrada);
-        }
-
-        public override string ObterTipoCadastro()
-        {
-            return "Cadastro de Tarefas";
         }
 
         public override ListagemTarefaControl ObterListagem()

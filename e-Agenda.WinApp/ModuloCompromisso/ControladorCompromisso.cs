@@ -3,40 +3,26 @@ using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class ControladorCompromisso : ControladorBase<Compromisso, RepositorioCompromisso, ListagemCompromissoControl, TelaCompromissoForm>
+    public class ControladorCompromisso : ControladorBase<Compromisso, RepositorioCompromisso, ListagemCompromissoControl, TelaCompromissoForm, RepositorioContato>
     {
         private RepositorioCompromisso _repositorioCompromisso;
         private RepositorioContato _repositorioContato;
         private ListagemCompromissoControl _listagemCompromisso;
 
-        public ControladorCompromisso(RepositorioCompromisso _repositorio, ListagemCompromissoControl _listagem, RepositorioContato _repositorioContato) : base(_repositorio, _listagem, _repositorioContato)
+        public ControladorCompromisso(RepositorioCompromisso _repositorio, ListagemCompromissoControl _listagem, RepositorioContato _repositorio2) : base(_repositorio, _listagem, _repositorio2)
         {
             this._repositorioCompromisso = _repositorio;
             this._listagemCompromisso = _listagem;
-            this._repositorioContato = _repositorioContato;
+            this._repositorioContato = _repositorio2;
 
-            this.onCarregarComboBox += CarregarComboBox;
+            this.onCarregarArquivosSegundoRepositorio += CarregarComboBox;
         }
-
-        public override string ToolTipAdicionar { get { return "Adicionar novo Contato"; } }
-
-        public override string ToolTipEditar { get { return "Editar Contato existente"; } }
-
-        public override string ToolTipExcluir { get { return "Excluir Contato existente"; } }
-
 
         public void CarregarComboBox(TelaCompromissoForm telaCompromisso)
         {
             telaCompromisso.cbContato.DisplayMember = "Nome";
             telaCompromisso.cbContato.ValueMember = "Nome";
             telaCompromisso.cbContato.DataSource = _repositorioContato.ObterListaRegistros();
-
-
-        }
-
-        public override string ObterTipoCadastro()
-        {
-            return "Cadastro de Compromissos";
         }
 
         public override void Filtrar()

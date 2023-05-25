@@ -20,6 +20,8 @@
 
         public abstract void AtualizarItensCheck();
 
+        public abstract void VisualizarDespesasPorCategoria();
+
         public abstract void CarregarRegistros();
 
         public abstract string ObterTipoCadastro();

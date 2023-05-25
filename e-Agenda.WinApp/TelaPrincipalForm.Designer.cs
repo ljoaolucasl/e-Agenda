@@ -36,7 +36,8 @@
             compromissosMenuItem = new ToolStripMenuItem();
             tarefasMenuItem = new ToolStripMenuItem();
             despesasToolStripMenuItem = new ToolStripMenuItem();
-            despesasToolStripMenuItem1 = new ToolStripMenuItem();
+            despesasMenuItem = new ToolStripMenuItem();
+            categoriasMenuItem = new ToolStripMenuItem();
             toolStrip1 = new ToolStrip();
             btnAdd = new ToolStripButton();
             btnEditar = new ToolStripButton();
@@ -48,6 +49,8 @@
             btnAtualizarItens = new ToolStripButton();
             lblTipoCadastro = new ToolStripLabel();
             plPrincipal = new Panel();
+            toolStripSeparator3 = new ToolStripSeparator();
+            btnVisualizarDespesas = new ToolStripButton();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -107,20 +110,28 @@
             // 
             // despesasToolStripMenuItem
             // 
-            despesasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasToolStripMenuItem1 });
+            despesasToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { despesasMenuItem, categoriasMenuItem });
             despesasToolStripMenuItem.Name = "despesasToolStripMenuItem";
             despesasToolStripMenuItem.Size = new Size(154, 22);
             despesasToolStripMenuItem.Text = "Despesas";
             // 
-            // despesasToolStripMenuItem1
+            // despesasMenuItem
             // 
-            despesasToolStripMenuItem1.Name = "despesasToolStripMenuItem1";
-            despesasToolStripMenuItem1.Size = new Size(122, 22);
-            despesasToolStripMenuItem1.Text = "Despesas";
+            despesasMenuItem.Name = "despesasMenuItem";
+            despesasMenuItem.Size = new Size(130, 22);
+            despesasMenuItem.Text = "Despesas";
+            despesasMenuItem.Click += despesasMenuItem_Click;
+            // 
+            // categoriasMenuItem
+            // 
+            categoriasMenuItem.Name = "categoriasMenuItem";
+            categoriasMenuItem.Size = new Size(130, 22);
+            categoriasMenuItem.Text = "Categorias";
+            categoriasMenuItem.Click += categoriasMenuItem_Click;
             // 
             // toolStrip1
             // 
-            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdd, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAdicionarItem, btnAtualizarItens, lblTipoCadastro });
+            toolStrip1.Items.AddRange(new ToolStripItem[] { btnAdd, btnEditar, btnExcluir, toolStripSeparator1, btnFiltrar, toolStripSeparator2, btnAdicionarItem, btnAtualizarItens, toolStripSeparator3, btnVisualizarDespesas, lblTipoCadastro });
             toolStrip1.Location = new Point(0, 24);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(924, 45);
@@ -226,7 +237,8 @@
             lblTipoCadastro.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             lblTipoCadastro.Margin = new Padding(2);
             lblTipoCadastro.Name = "lblTipoCadastro";
-            lblTipoCadastro.Size = new Size(0, 41);
+            lblTipoCadastro.Size = new Size(113, 41);
+            lblTipoCadastro.Text = "Tipo de Cadastro";
             // 
             // plPrincipal
             // 
@@ -236,6 +248,25 @@
             plPrincipal.Name = "plPrincipal";
             plPrincipal.Size = new Size(924, 478);
             plPrincipal.TabIndex = 3;
+            // 
+            // toolStripSeparator3
+            // 
+            toolStripSeparator3.Name = "toolStripSeparator3";
+            toolStripSeparator3.Size = new Size(6, 45);
+            // 
+            // btnVisualizarDespesas
+            // 
+            btnVisualizarDespesas.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            btnVisualizarDespesas.Enabled = false;
+            btnVisualizarDespesas.Image = Properties.Resources.CategoriaSeachIcon;
+            btnVisualizarDespesas.ImageScaling = ToolStripItemImageScaling.None;
+            btnVisualizarDespesas.ImageTransparentColor = Color.Magenta;
+            btnVisualizarDespesas.Name = "btnVisualizarDespesas";
+            btnVisualizarDespesas.Padding = new Padding(7);
+            btnVisualizarDespesas.Size = new Size(42, 42);
+            btnVisualizarDespesas.Text = "Visualizar Despesas";
+            btnVisualizarDespesas.ToolTipText = "Visualizar Despesas";
+            btnVisualizarDespesas.Click += btnVisualizarDespesas_Click;
             // 
             // TelaPrincipalForm
             // 
@@ -273,7 +304,7 @@
         private ToolStripMenuItem compromissosMenuItem;
         private ToolStripMenuItem tarefasMenuItem;
         private ToolStripMenuItem despesasToolStripMenuItem;
-        private ToolStripMenuItem despesasToolStripMenuItem1;
+        private ToolStripMenuItem despesasMenuItem;
         private ToolStripStatusLabel lbStatus;
         private Panel plPrincipal;
         private ToolStripSeparator toolStripSeparator1;
@@ -282,5 +313,8 @@
         private ToolStripButton btnAdicionarItem;
         private ToolStripButton btnAtualizarItens;
         private ToolStripSeparator toolStripSeparator2;
+        private ToolStripMenuItem categoriasMenuItem;
+        private ToolStripSeparator toolStripSeparator3;
+        private ToolStripButton btnVisualizarDespesas;
     }
 }

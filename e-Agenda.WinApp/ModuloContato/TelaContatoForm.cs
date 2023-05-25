@@ -14,7 +14,7 @@ namespace e_Agenda.WinApp.ModuloContato
             set
             {
                 txtId.Text = value.id.ToString();
-                txtNome.Text = value.nome;
+                txtNome.Text = value.Nome;
                 txtTelefone.Text = value.telefone;
                 txtEmail.Text = value.email;
                 txtCargo.Text = value.cargo;

@@ -2,16 +2,17 @@
 
 namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class ControladorBase<TEntidade, TRepositorio, TListagem, TTela> : IControladorBase
+    public abstract class ControladorBase<TEntidade, TRepositorio, TListagem, TTela, TRepositorio2> : IControladorBase
         where TEntidade : Entidade 
         where TRepositorio : RepositorioBase<TEntidade> 
         where TListagem : IListagemBase<TEntidade>, new()
         where TTela : ITelaBase<TEntidade>, new()
     {
         protected TRepositorio _repositorio;
+        protected TRepositorio2 _repositorio2;
         protected TListagem _listagem;
 
-        protected event Action<TTela> onCarregarComboBox;
+        protected event Action<TTela> onCarregarArquivosSegundoRepositorio;
 
         public ControladorBase(TRepositorio _repositorio, TListagem _listagem)
         {
@@ -19,24 +20,25 @@ namespace e_Agenda.WinApp.Compartilhado
             this._listagem = _listagem;
         }
 
-        public ControladorBase(TRepositorio _repositorio, TListagem _listagem, RepositorioContato _repositorioContato)
+        public ControladorBase(TRepositorio _repositorio, TListagem _listagem, TRepositorio2 _repositorio2)
         {
             this._repositorio = _repositorio;
             this._listagem = _listagem;
+            this._repositorio2 = _repositorio2;
         }
 
-        public abstract string ToolTipAdicionar { get; }
+        public virtual string ToolTipAdicionar => $"Adicionar {typeof(TEntidade).Name}";
 
-        public abstract string ToolTipEditar { get; }
+        public virtual string ToolTipEditar => $"Editar {typeof(TEntidade).Name} existente";
 
-        public abstract string ToolTipExcluir { get; }
+        public virtual string ToolTipExcluir => $"Excluir {typeof(TEntidade).Name} existente";
 
         public virtual void Adicionar()
         {
             TTela tela = new TTela();
 
-            if (onCarregarComboBox != null)
-                onCarregarComboBox(tela);
+            if (onCarregarArquivosSegundoRepositorio != null)
+                onCarregarArquivosSegundoRepositorio(tela);
 
             tela.TtxtId.Text = _repositorio.Id.ToString();
 
@@ -60,8 +62,8 @@ namespace e_Agenda.WinApp.Compartilhado
 
             TTela tela = new TTela();
 
-            if (onCarregarComboBox != null)
-                onCarregarComboBox(tela);
+            if (onCarregarArquivosSegundoRepositorio != null)
+                onCarregarArquivosSegundoRepositorio(tela);
 
             tela.Entidade = entidade;
 
@@ -100,12 +102,17 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public virtual void AtualizarItensCheck() { }
 
+        public virtual void VisualizarDespesasPorCategoria() { }
+
         public virtual void CarregarRegistros()
         {
             _listagem.AtualizarLista(_repositorio.ObterListaRegistros());
         }
 
-        public abstract string ObterTipoCadastro();
+        public virtual string ObterTipoCadastro()
+        {
+            return $"Cadastro de {typeof(TEntidade).Name}s";
+        }
 
         public abstract UserControl ObterListagem();
     }
