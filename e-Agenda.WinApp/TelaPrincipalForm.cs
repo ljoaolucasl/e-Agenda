@@ -11,16 +11,18 @@ namespace e_Agenda.WinApp
     {
         private IControladorBase _controladorBase;
         private UserControl _listagem;
+
         private RepositorioContato _repositorioContato = new();
         private RepositorioTarefa _repositorioTarefa = new();
         private RepositorioCompromisso _repositorioCompromisso = new();
         private RepositorioDespesa _repositorioDespesa = new();
         private RepositorioCategoria _repositorioCategoria = new();
-        private ListagemContatoControl _listagemContato = new();
-        private ListagemTarefaControl _listagemTarefa = new();
-        private ListagemCompromissoControl _listagemCompromisso = new();
-        private ListagemDespesaControl _listagemDespesa = new();
-        private ListagemCategoriaControl _listagemCategoria = new();
+
+        private TabelaContatoControl _tabelaContato = new();
+        private TabelaTarefaControl _tabelaTarefa = new();
+        private TabelaCompromissoControl _tabelaCompromisso = new();
+        private TabelaDespesaControl _tabelaDespesa = new();
+        private TabelaCategoriaControl _tabelaCategoria = new();
 
         private static TelaPrincipalForm _telaPrincipal;
 
@@ -37,35 +39,35 @@ namespace e_Agenda.WinApp
 
         private void contatosMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorContato(_repositorioContato, _listagemContato);
+            _controladorBase = new ControladorContato(_repositorioContato, _tabelaContato);
 
             ConfigurarTelaPrincipal();
         }
 
         private void tarefasMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorTarefa(_repositorioTarefa, _listagemTarefa);
+            _controladorBase = new ControladorTarefa(_repositorioTarefa, _tabelaTarefa);
 
             ConfigurarTelaPrincipal();
         }
 
         private void compromissosMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorCompromisso(_repositorioCompromisso, _listagemCompromisso, _repositorioContato);
+            _controladorBase = new ControladorCompromisso(_repositorioCompromisso, _tabelaCompromisso, _repositorioContato);
 
             ConfigurarTelaPrincipal();
         }
 
         private void despesasMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorDespesa(_repositorioDespesa, _listagemDespesa, _repositorioCategoria);
+            _controladorBase = new ControladorDespesa(_repositorioDespesa, _tabelaDespesa, _repositorioCategoria);
 
             ConfigurarTelaPrincipal();
         }
 
         private void categoriasMenuItem_Click(object sender, EventArgs e)
         {
-            _controladorBase = new ControladorCategoria(_repositorioCategoria, _listagemCategoria, _repositorioDespesa);
+            _controladorBase = new ControladorCategoria(_repositorioCategoria, _tabelaCategoria, _repositorioDespesa);
 
             ConfigurarTelaPrincipal();
         }
@@ -89,7 +91,7 @@ namespace e_Agenda.WinApp
 
             _listagem.Dock = DockStyle.Fill;
 
-            ((ListView)(_listagem.Controls[0])).SelectedIndexChanged += HabilitaEDesabilitaBotoes;
+            ((DataGridView)(_listagem.Controls[0])).SelectionChanged += HabilitaEDesabilitaBotoes;
         }
 
         private void ConfigurarToolTipsAndButtons()
@@ -158,13 +160,11 @@ namespace e_Agenda.WinApp
             ConfigurarBotoesItens();
 
             ConfigurarBotaoVisualizarDepesas();
-
-            AtualizarStatus($"{((ListView)(_listagem.Controls[0])).SelectedItems.Count} Iten(s) Selecionado(s)");
         }
 
         private void ConfigurarBotaoVisualizarDepesas()
         {
-            if (_controladorBase is ControladorCategoria && ((ListView)_listagem.Controls[0]).SelectedItems.Count > 0)
+            if (_controladorBase is ControladorCategoria && ((DataGridView)_listagem.Controls[0]).SelectedRows.Count > 0)
                 btnVisualizarDespesas.Enabled = true;
             else
                 btnVisualizarDespesas.Enabled = false;
@@ -172,7 +172,7 @@ namespace e_Agenda.WinApp
 
         private void ConfigurarBotoesItens()
         {
-            if (_controladorBase is ControladorTarefa && ((ListView)_listagem.Controls[0]).SelectedItems.Count > 0)
+            if (_controladorBase is ControladorTarefa && ((DataGridView)_listagem.Controls[0]).SelectedRows.Count > 0)
             {
                 btnAdicionarItem.Enabled = true;
                 btnAtualizarItens.Enabled = true;
@@ -194,7 +194,7 @@ namespace e_Agenda.WinApp
 
         private void ConfigurarBotoesCrud()
         {
-            if (((ListView)_listagem.Controls[0]).SelectedItems.Count > 0)
+            if (((DataGridView)_listagem.Controls[0]).SelectedRows.Count > 0)
             {
                 btnEditar.Enabled = true;
                 btnExcluir.Enabled = true;
@@ -216,6 +216,6 @@ namespace e_Agenda.WinApp
             btnVisualizarDespesas.Enabled = false;
 
             ConfigurarBotaoFiltro();
-        }  
+        }
     }
 }

@@ -1,19 +1,20 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloTarefa.Item;
 using System.Collections;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    public class ControladorTarefa : ControladorBase<Tarefa, RepositorioTarefa, ListagemTarefaControl, TelaTarefaForm, NenhumRepositorio>
+    public class ControladorTarefa : ControladorBase<Tarefa, RepositorioTarefa, TabelaTarefaControl, TelaTarefaForm, NenhumRepositorio>
     {
         private RepositorioTarefa _repositorioTarefa;
-        private ListagemTarefaControl _listagemTarefa;
+        private TabelaTarefaControl _tabelaTarefa;
 
-        public ControladorTarefa(RepositorioTarefa _repositorio, ListagemTarefaControl _listagem) : base(_repositorio, _listagem)
+        public ControladorTarefa(RepositorioTarefa _repositorio, TabelaTarefaControl _tabela) : base(_repositorio, _tabela)
         {
             this._repositorioTarefa = _repositorio;
-            this._listagemTarefa = _listagem;
+            this._tabelaTarefa = _tabela;
         }
 
         public override void AdicionarItens()
@@ -21,11 +22,11 @@ namespace e_Agenda.WinApp.ModuloTarefa
             TelaItemForm telaItem = new();
             Tarefa tarefaSelecionada = null;
 
-            foreach (ListViewItem tarefa in _listagemTarefa.ListView.SelectedItems)
-            {
-                telaItem.lbTarefa.Text = tarefa.SubItems[1].Text;
-                tarefaSelecionada = (Tarefa)tarefa.Tag;
-            }
+
+            tarefaSelecionada = _tabelaTarefa.ObterTarefaSelecionada();
+
+            telaItem.lbTarefa.Text = tarefaSelecionada.titulo;
+
 
             telaItem.Entidade = tarefaSelecionada.itens;
 
@@ -48,11 +49,16 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             int qtdItensAtualizados = 0;
 
-            foreach (ListViewItem tarefa in _listagemTarefa.ListView.SelectedItems)
-            {
-                telaItemCheck.lbTarefa.Text = tarefa.SubItems[1].Text;
-                tarefaSelecionada = (Tarefa)tarefa.Tag;
-            }
+            //foreach (ListViewItem tarefa in _tabelaTarefa.ListView.SelectedItems)
+            //{
+            //    telaItemCheck.lbTarefa.Text = tarefa.SubItems[1].Text;
+            //    tarefaSelecionada = (Tarefa)tarefa.Tag;
+            //}
+
+            tarefaSelecionada = _tabelaTarefa.ObterTarefaSelecionada();
+
+            telaItemCheck.lbTarefa.Text = tarefaSelecionada.titulo;
+
 
             telaItemCheck.Entidade = tarefaSelecionada.itens;
 
@@ -114,12 +120,12 @@ namespace e_Agenda.WinApp.ModuloTarefa
                     break;
             }
 
-            _listagemTarefa.AtualizarLista(listaFiltrada);
+            _tabelaTarefa.AtualizarLista(listaFiltrada);
         }
 
-        public override ListagemTarefaControl ObterListagem()
+        public override TabelaTarefaControl ObterListagem()
         {
-            return _listagem;
+            return _tabela;
         }
     }
 }

@@ -12,14 +12,14 @@ using System.Windows.Forms;
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {
-    public partial class ListagemCategoriaControl : UserControl, IListagemBase<Categoria>
+    public partial class ListagemCategoriaControl : UserControl, ITabelaBase<Categoria>
     {
         public ListagemCategoriaControl()
         {
             InitializeComponent();
         }
 
-        public ListView ListView { get { return listCategorias; } }
+        public DataGridView DataGridView { get; }
 
         public void AtualizarLista(List<Categoria> categorias)
         {
@@ -36,7 +36,7 @@ namespace e_Agenda.WinApp.ModuloCategoria
             TelaPrincipalForm.AtualizarStatus($"Visualizando {categorias.Count} Categorias");
         }
 
-        public Categoria? ObterContatoSelecionado()
+        public Categoria? ObterTarefaSelecionada()
         {
             ListViewItem itemSelecionado = listCategorias.SelectedItems[0];
             return listCategorias.SelectedItems.Count > 0 ? (Categoria)itemSelecionado.Tag : null;

@@ -4,17 +4,17 @@ using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloDespesas
 {
-    public class ControladorDespesa : ControladorBase<Despesa, RepositorioDespesa, ListagemDespesaControl, TelaDespesaForm, RepositorioCategoria>
+    public class ControladorDespesa : ControladorBase<Despesa, RepositorioDespesa, TabelaDespesaControl, TelaDespesaForm, RepositorioCategoria>
     {
         private RepositorioDespesa _repositorioDespesa;
         private RepositorioCategoria _repositorioCategoria;
-        private ListagemDespesaControl _listagemDespesa;
+        private TabelaDespesaControl _tabelaDespesa;
 
-        public ControladorDespesa(RepositorioDespesa _repositorio, ListagemDespesaControl _listagem, RepositorioCategoria _repositorio2) : base(_repositorio, _listagem, _repositorio2)
+        public ControladorDespesa(RepositorioDespesa _repositorio, TabelaDespesaControl _tabela, RepositorioCategoria _repositorio2) : base(_repositorio, _tabela, _repositorio2)
         {
             this._repositorioDespesa = _repositorio;
             this._repositorioCategoria = _repositorio2;
-            this._listagemDespesa = _listagem;
+            this._tabelaDespesa = _tabela;
 
             this.onCarregarArquivosSegundoRepositorio += CarregarListaCategorias;
         }
@@ -24,9 +24,9 @@ namespace e_Agenda.WinApp.ModuloDespesas
             telaDespesa.checkListCategorias.Items.AddRange(_repositorioCategoria.ObterListaRegistros().ToArray());
         }
 
-        public override ListagemDespesaControl ObterListagem()
+        public override TabelaDespesaControl ObterListagem()
         {
-            return _listagem;
+            return _tabela;
         }
     }
 }

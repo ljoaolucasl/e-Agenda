@@ -2,14 +2,14 @@
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public partial class ListagemCompromissoControl : UserControl, IListagemBase<Compromisso>
+    public partial class ListagemCompromissoControl : UserControl, ITabelaBase<Compromisso>
     {
         public ListagemCompromissoControl()
         {
             InitializeComponent();
         }
 
-        public ListView ListView { get { return listCompromissos; } }
+        public DataGridView DataGridView { get; }
 
         public void AtualizarLista(List<Compromisso> compromissos)
         {
@@ -30,7 +30,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
             TelaPrincipalForm.AtualizarStatus($"Visualizando {compromissos.Count} Compromissos");
         }
 
-        public Compromisso? ObterContatoSelecionado()
+        public Compromisso? ObterTarefaSelecionada()
         {
             ListViewItem itemSelecionado = listCompromissos.SelectedItems[0];
             return listCompromissos.SelectedItems.Count > 0 ? (Compromisso)itemSelecionado.Tag : null;

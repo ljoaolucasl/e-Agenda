@@ -3,16 +3,16 @@ using e_Agenda.WinApp.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
-    public class ControladorCompromisso : ControladorBase<Compromisso, RepositorioCompromisso, ListagemCompromissoControl, TelaCompromissoForm, RepositorioContato>
+    public class ControladorCompromisso : ControladorBase<Compromisso, RepositorioCompromisso, TabelaCompromissoControl, TelaCompromissoForm, RepositorioContato>
     {
         private RepositorioCompromisso _repositorioCompromisso;
         private RepositorioContato _repositorioContato;
-        private ListagemCompromissoControl _listagemCompromisso;
+        private TabelaCompromissoControl _tabelaCompromisso;
 
-        public ControladorCompromisso(RepositorioCompromisso _repositorio, ListagemCompromissoControl _listagem, RepositorioContato _repositorio2) : base(_repositorio, _listagem, _repositorio2)
+        public ControladorCompromisso(RepositorioCompromisso _repositorio, TabelaCompromissoControl _tabela, RepositorioContato _repositorio2) : base(_repositorio, _tabela, _repositorio2)
         {
             this._repositorioCompromisso = _repositorio;
-            this._listagemCompromisso = _listagem;
+            this._tabelaCompromisso = _tabela;
             this._repositorioContato = _repositorio2;
 
             this.onCarregarArquivosSegundoRepositorio += CarregarComboBox;
@@ -57,12 +57,12 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                     break;
             }
 
-            _listagemCompromisso.AtualizarLista(listaFiltrada);
+            _tabelaCompromisso.AtualizarLista(listaFiltrada);
         }
 
-        public override ListagemCompromissoControl ObterListagem()
+        public override TabelaCompromissoControl ObterListagem()
         {
-            return _listagem;
+            return _tabela;
         }
     }
 }

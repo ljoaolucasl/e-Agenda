@@ -2,28 +2,28 @@
 
 namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class ControladorBase<TEntidade, TRepositorio, TListagem, TTela, TRepositorio2> : IControladorBase
+    public abstract class ControladorBase<TEntidade, TRepositorio, TTabela, TTela, TRepositorio2> : IControladorBase
         where TEntidade : Entidade 
         where TRepositorio : RepositorioBase<TEntidade> 
-        where TListagem : IListagemBase<TEntidade>, new()
+        where TTabela : ITabelaBase<TEntidade>, new()
         where TTela : ITelaBase<TEntidade>, new()
     {
         protected TRepositorio _repositorio;
         protected TRepositorio2 _repositorio2;
-        protected TListagem _listagem;
+        protected TTabela _tabela;
 
         protected event Action<TTela> onCarregarArquivosSegundoRepositorio;
 
-        public ControladorBase(TRepositorio _repositorio, TListagem _listagem)
+        public ControladorBase(TRepositorio _repositorio, TTabela _listagem)
         {
             this._repositorio = _repositorio;
-            this._listagem = _listagem;
+            this._tabela = _listagem;
         }
 
-        public ControladorBase(TRepositorio _repositorio, TListagem _listagem, TRepositorio2 _repositorio2)
+        public ControladorBase(TRepositorio _repositorio, TTabela _listagem, TRepositorio2 _repositorio2)
         {
             this._repositorio = _repositorio;
-            this._listagem = _listagem;
+            this._tabela = _listagem;
             this._repositorio2 = _repositorio2;
         }
 
@@ -58,7 +58,7 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public virtual void Editar()
         {
-            TEntidade? entidade = _listagem.ObterContatoSelecionado();
+            TEntidade? entidade = _tabela.ObterTarefaSelecionada();
 
             TTela tela = new TTela();
 
@@ -81,7 +81,7 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public virtual void Excluir()
         {
-            TEntidade? entidade = _listagem.ObterContatoSelecionado();
+            TEntidade? entidade = _tabela.ObterTarefaSelecionada();
 
             TelaPrincipalForm.AtualizarStatus($"Excluindo {typeof(TEntidade).Name}");
 
@@ -106,7 +106,7 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public virtual void CarregarRegistros()
         {
-            _listagem.AtualizarLista(_repositorio.ObterListaRegistros());
+            _tabela.AtualizarLista(_repositorio.ObterListaRegistros());
         }
 
         public virtual string ObterTipoCadastro()

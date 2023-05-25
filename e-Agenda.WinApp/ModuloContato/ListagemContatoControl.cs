@@ -3,14 +3,14 @@ using e_Agenda.WinApp.ModuloCompromisso;
 
 namespace e_Agenda.WinApp.ModuloContato
 {
-    public partial class ListagemContatoControl : UserControl, IListagemBase<Contato>
+    public partial class ListagemContatoControl : UserControl, ITabelaBase<Contato>
     {
         public ListagemContatoControl()
         {
             InitializeComponent();
         }
 
-        public ListView ListView { get { return listContatos; } }
+        public DataGridView DataGridView { get; }
 
         public void AtualizarLista(List<Contato> contatos)
         {
@@ -31,7 +31,7 @@ namespace e_Agenda.WinApp.ModuloContato
             TelaPrincipalForm.AtualizarStatus($"Visualizando {contatos.Count} Contatos");
         }
 
-        public Contato? ObterContatoSelecionado()
+        public Contato? ObterTarefaSelecionada()
         {
             ListViewItem itemSelecionado = listContatos.SelectedItems[0];
             return listContatos.SelectedItems.Count > 0 ? (Contato)itemSelecionado.Tag : null;

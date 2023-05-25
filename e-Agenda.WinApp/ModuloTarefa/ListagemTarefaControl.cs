@@ -3,14 +3,14 @@ using e_Agenda.WinApp.ModuloCompromisso;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    public partial class ListagemTarefaControl : UserControl, IListagemBase<Tarefa>
+    public partial class ListagemTarefaControl : UserControl, ITabelaBase<Tarefa>
     {
         public ListagemTarefaControl()
         {
             InitializeComponent();
         }
 
-        public ListView ListView { get { return listTarefas; } }
+        public DataGridView DataGridView { get; }
 
         public void AtualizarLista(List<Tarefa> tarefas)
         {
@@ -34,7 +34,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             TelaPrincipalForm.AtualizarStatus($"Visualizando {tarefas.Count} Tarefas");
         }
 
-        public Tarefa? ObterContatoSelecionado()
+        public Tarefa? ObterTarefaSelecionada()
         {
             ListViewItem itemSelecionado = listTarefas.SelectedItems[0];
             return listTarefas.SelectedItems.Count > 0 ? (Tarefa)itemSelecionado.Tag : null;

@@ -47,10 +47,10 @@
             toolStripSeparator2 = new ToolStripSeparator();
             btnAdicionarItem = new ToolStripButton();
             btnAtualizarItens = new ToolStripButton();
-            lblTipoCadastro = new ToolStripLabel();
-            plPrincipal = new Panel();
             toolStripSeparator3 = new ToolStripSeparator();
             btnVisualizarDespesas = new ToolStripButton();
+            lblTipoCadastro = new ToolStripLabel();
+            plPrincipal = new Panel();
             statusStrip1.SuspendLayout();
             menuStrip1.SuspendLayout();
             toolStrip1.SuspendLayout();
@@ -232,23 +232,6 @@
             btnAtualizarItens.ToolTipText = "Atualizar Itens da Tarefa";
             btnAtualizarItens.Click += btnAtualizarItens_Click;
             // 
-            // lblTipoCadastro
-            // 
-            lblTipoCadastro.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            lblTipoCadastro.Margin = new Padding(2);
-            lblTipoCadastro.Name = "lblTipoCadastro";
-            lblTipoCadastro.Size = new Size(113, 41);
-            lblTipoCadastro.Text = "Tipo de Cadastro";
-            // 
-            // plPrincipal
-            // 
-            plPrincipal.BackColor = SystemColors.ScrollBar;
-            plPrincipal.Dock = DockStyle.Fill;
-            plPrincipal.Location = new Point(0, 69);
-            plPrincipal.Name = "plPrincipal";
-            plPrincipal.Size = new Size(924, 478);
-            plPrincipal.TabIndex = 3;
-            // 
             // toolStripSeparator3
             // 
             toolStripSeparator3.Name = "toolStripSeparator3";
@@ -267,6 +250,23 @@
             btnVisualizarDespesas.Text = "Visualizar Despesas";
             btnVisualizarDespesas.ToolTipText = "Visualizar Despesas";
             btnVisualizarDespesas.Click += btnVisualizarDespesas_Click;
+            // 
+            // lblTipoCadastro
+            // 
+            lblTipoCadastro.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            lblTipoCadastro.Margin = new Padding(2);
+            lblTipoCadastro.Name = "lblTipoCadastro";
+            lblTipoCadastro.Size = new Size(113, 41);
+            lblTipoCadastro.Text = "Tipo de Cadastro";
+            // 
+            // plPrincipal
+            // 
+            plPrincipal.BackColor = SystemColors.ScrollBar;
+            plPrincipal.Dock = DockStyle.Fill;
+            plPrincipal.Location = new Point(0, 69);
+            plPrincipal.Name = "plPrincipal";
+            plPrincipal.Size = new Size(924, 478);
+            plPrincipal.TabIndex = 3;
             // 
             // TelaPrincipalForm
             // 

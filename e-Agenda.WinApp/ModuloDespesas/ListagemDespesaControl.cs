@@ -2,14 +2,14 @@
 
 namespace e_Agenda.WinApp.ModuloDespesas
 {
-    public partial class ListagemDespesaControl : UserControl, IListagemBase<Despesa>
+    public partial class ListagemDespesaControl : UserControl, ITabelaBase<Despesa>
     {
         public ListagemDespesaControl()
         {
             InitializeComponent();
         }
 
-        public ListView ListView { get { return listDespesas; } }
+        public DataGridView DataGridView { get; }
 
         public void AtualizarLista(List<Despesa> despesas)
         {
@@ -29,7 +29,7 @@ namespace e_Agenda.WinApp.ModuloDespesas
             TelaPrincipalForm.AtualizarStatus($"Visualizando {despesas.Count} Despesas");
         }
 
-        public Despesa? ObterContatoSelecionado()
+        public Despesa? ObterTarefaSelecionada()
         {
             ListViewItem itemSelecionado = listDespesas.SelectedItems[0];
             return listDespesas.SelectedItems.Count > 0 ? (Despesa)itemSelecionado.Tag : null;

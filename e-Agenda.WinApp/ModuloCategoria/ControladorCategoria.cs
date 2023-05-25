@@ -5,22 +5,22 @@ using e_Agenda.WinApp.ModuloTarefa;
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {
-    public class ControladorCategoria : ControladorBase<Categoria, RepositorioCategoria, ListagemCategoriaControl, TelaCategoriaForm, RepositorioDespesa>
+    public class ControladorCategoria : ControladorBase<Categoria, RepositorioCategoria, TabelaCategoriaControl, TelaCategoriaForm, RepositorioDespesa>
     {
         private RepositorioCategoria _repositorioCategoria;
         private RepositorioDespesa _repositorioDespesa;
-        private ListagemCategoriaControl _listagemCategoria;
+        private TabelaCategoriaControl _tabelaCategoria;
 
-        public ControladorCategoria(RepositorioCategoria _repositorio, ListagemCategoriaControl _listagem, RepositorioDespesa _repositorio2) : base(_repositorio, _listagem, _repositorio2)
+        public ControladorCategoria(RepositorioCategoria _repositorio, TabelaCategoriaControl _tabela, RepositorioDespesa _repositorio2) : base(_repositorio, _tabela, _repositorio2)
         {
             this._repositorioCategoria = _repositorio;
             this._repositorioDespesa = _repositorio2;
-            this._listagemCategoria = _listagem;
+            this._tabelaCategoria = _tabela;
         }
 
-        public override ListagemCategoriaControl ObterListagem()
+        public override TabelaCategoriaControl ObterListagem()
         {
-            return _listagem;
+            return _tabela;
         }
 
         public override void VisualizarDespesasPorCategoria()
@@ -29,11 +29,16 @@ namespace e_Agenda.WinApp.ModuloCategoria
 
             Categoria categoriaSelecionada = null;
 
-            foreach (ListViewItem categoria in _listagemCategoria.ListView.SelectedItems)
-            {
-                telaDepesasCategoria.lbCategoria.Text = categoria.SubItems[1].Text;
-                categoriaSelecionada = (Categoria)categoria.Tag;
-            }
+            //foreach (ListViewItem categoria in _tabelaCategoria.ListView.SelectedItems)
+            //{
+            //    telaDepesasCategoria.lbCategoria.Text = categoria.SubItems[1].Text;
+            //    categoriaSelecionada = (Categoria)categoria.Tag;
+            //}
+
+            categoriaSelecionada = _tabelaCategoria.ObterTarefaSelecionada();
+
+            telaDepesasCategoria.lbCategoria.Text = categoriaSelecionada.titulo;
+
 
             TelaPrincipalForm.AtualizarStatus($"Visualizando Despesas por Categoria");
 

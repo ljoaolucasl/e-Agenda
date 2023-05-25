@@ -9,30 +9,26 @@ namespace e_Agenda.WinApp.ModuloTarefa
 {
     public class CompararTarefaPorPrioridade : IComparer
     {
-        public int Compare(object? x, object? y)
+        private static Dictionary<string, int> prioridades = new Dictionary<string, int>()
         {
-            ListViewItem mX = (ListViewItem)x;
+            { "Baixa", 0 },
+            { "Média", 1 },
+            { "Alta", 2 },
+            { "Urgente", 3 }
+        };
 
-            ListViewItem mY = (ListViewItem)y;
-
-            int pX = ObterPrioridade(mX.SubItems[2].Text);
-            int pY = ObterPrioridade(mY.SubItems[2].Text);
-
-            int resultado = pX.CompareTo(pY);
-
-            return resultado;
-        }
-
-        private int ObterPrioridade(string prioridade)
+        public int Compare(object x, object y)
         {
-            switch (prioridade.ToLower())
-            {
-                case "baixa": return 1;
-                case "média": return 2;
-                case "alta": return 3;
-                case "urgente": return 4;
-                default: return 0;
-            }
+            DataGridViewRow rowX = (DataGridViewRow)x;
+            DataGridViewRow rowY = (DataGridViewRow)y;
+
+            string prioridadeX = rowX.Cells["prioridade"].Value.ToString();
+            string prioridadeY = rowY.Cells["prioridade"].Value.ToString();
+
+            int indicePrioridadeX = prioridades[prioridadeX];
+            int indicePrioridadeY = prioridades[prioridadeY];
+
+            return indicePrioridadeX.CompareTo(indicePrioridadeY);
         }
     }
 }
