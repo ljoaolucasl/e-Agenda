@@ -3,7 +3,7 @@
 namespace e_Agenda.WinApp.Compartilhado
 {
     public abstract class ControladorBase<TEntidade, TRepositorio, TTabela, TTela, TRepositorio2> : IControladorBase
-        where TEntidade : Entidade 
+        where TEntidade : Entidade<TEntidade>
         where TRepositorio : RepositorioBase<TEntidade> 
         where TTabela : ITabelaBase<TEntidade>, new()
         where TTela : ITelaBase<TEntidade>, new()

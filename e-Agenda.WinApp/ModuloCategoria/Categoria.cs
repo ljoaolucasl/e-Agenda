@@ -2,7 +2,8 @@
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {
-    public class Categoria : Entidade
+    [Serializable]
+    public class Categoria : Entidade<Categoria>
     {
         public string titulo;
         public bool check = false;

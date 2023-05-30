@@ -22,11 +22,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
             TelaItemForm telaItem = new();
             Tarefa tarefaSelecionada = null;
 
-
             tarefaSelecionada = _tabelaTarefa.ObterTarefaSelecionada();
 
             telaItem.lbTarefa.Text = tarefaSelecionada.titulo;
-
 
             telaItem.Entidade = tarefaSelecionada.itens;
 

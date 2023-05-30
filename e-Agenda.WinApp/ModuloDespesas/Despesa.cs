@@ -3,7 +3,8 @@ using e_Agenda.WinApp.ModuloCategoria;
 
 namespace e_Agenda.WinApp.ModuloDespesas
 {
-    public class Despesa : Entidade
+    [Serializable]
+    public class Despesa : Entidade<Despesa>
     {
         public string descricao;
         public string valor;

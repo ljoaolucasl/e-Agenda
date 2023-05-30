@@ -1,6 +1,7 @@
 ﻿namespace e_Agenda.WinApp.Compartilhado
 {
-    public abstract class Entidade
+    [Serializable]
+    public abstract class Entidade<TEntidade>
     {
         public int id;
 
@@ -18,6 +19,19 @@
                 control.BackColor = SystemColors.Window;
                 return true;
             }
+        }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            foreach (var atributo in GetType().GetFields())
+            {
+                if (!Equals(atributo.GetValue((TEntidade)obj), atributo.GetValue(this)))
+                    return false;
+            }
+            return true;
         }
     }
 }

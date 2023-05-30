@@ -1,6 +1,9 @@
-﻿namespace e_Agenda.WinApp.ModuloTarefa.Item
+﻿using e_Agenda.WinApp.Compartilhado;
+
+namespace e_Agenda.WinApp.ModuloTarefa.Item
 {
-    public class ItemTarefa
+    [Serializable]
+    public class ItemTarefa : Entidade<ItemTarefa>
     {
         public string Nome { get; set; }
 

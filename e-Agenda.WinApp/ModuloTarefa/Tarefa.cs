@@ -3,7 +3,8 @@ using e_Agenda.WinApp.ModuloTarefa.Item;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
-    public class Tarefa : Entidade
+    [Serializable]
+    public class Tarefa : Entidade<Tarefa>
     {
         public string titulo;
         public string prioridade;

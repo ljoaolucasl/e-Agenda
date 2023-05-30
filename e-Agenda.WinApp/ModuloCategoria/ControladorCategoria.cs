@@ -29,16 +29,9 @@ namespace e_Agenda.WinApp.ModuloCategoria
 
             Categoria categoriaSelecionada = null;
 
-            //foreach (ListViewItem categoria in _tabelaCategoria.ListView.SelectedItems)
-            //{
-            //    telaDepesasCategoria.lbCategoria.Text = categoria.SubItems[1].Text;
-            //    categoriaSelecionada = (Categoria)categoria.Tag;
-            //}
-
             categoriaSelecionada = _tabelaCategoria.ObterTarefaSelecionada();
 
             telaDepesasCategoria.lbCategoria.Text = categoriaSelecionada.titulo;
-
 
             TelaPrincipalForm.AtualizarStatus($"Visualizando Despesas por Categoria");
 

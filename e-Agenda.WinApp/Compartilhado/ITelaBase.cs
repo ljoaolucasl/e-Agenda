@@ -1,6 +1,6 @@
 ﻿namespace e_Agenda.WinApp.Compartilhado
 {
-    public interface ITelaBase<TEntidade> where TEntidade : Entidade
+    public interface ITelaBase<TEntidade> where TEntidade : Entidade<TEntidade>
     {
         TextBox TtxtId { get; }
 
