@@ -2,6 +2,7 @@
 
 namespace e_Agenda.WinApp.ModuloContato
 {
+    [Serializable]
     public class RepositorioContato : RepositorioBase<Contato>
     {
         //public RepositorioContato()

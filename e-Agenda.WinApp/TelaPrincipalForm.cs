@@ -4,6 +4,7 @@ using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloDespesas;
 using e_Agenda.WinApp.ModuloTarefa;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace e_Agenda.WinApp
 {
@@ -18,18 +19,43 @@ namespace e_Agenda.WinApp
         private RepositorioDespesa _repositorioDespesa = new();
         private RepositorioCategoria _repositorioCategoria = new();
 
+        private RepositorioGlobal _repositorioGlobal;
+
         private TabelaContatoControl _tabelaContato = new();
         private TabelaTarefaControl _tabelaTarefa = new();
         private TabelaCompromissoControl _tabelaCompromisso = new();
         private TabelaDespesaControl _tabelaDespesa = new();
         private TabelaCategoriaControl _tabelaCategoria = new();
 
+
         private static TelaPrincipalForm _telaPrincipal;
 
         public TelaPrincipalForm()
         {
             InitializeComponent();
+
             _telaPrincipal = this;
+
+            List<object> dados = new()
+            {
+                _repositorioContato,
+                _repositorioTarefa,
+                _repositorioCompromisso,
+                _repositorioDespesa,
+                _repositorioCategoria
+            };
+
+            _repositorioGlobal = new RepositorioGlobal(dados);
+
+            if (File.Exists(RepositorioGlobal.CAMINHO_ARQUIVO))
+            {
+                RepositorioGlobal.CarregarRegistrosDoArquivoBIN();
+                _repositorioContato = (RepositorioContato)RepositorioGlobal.Dados[0];
+                _repositorioTarefa = (RepositorioTarefa)RepositorioGlobal.Dados[1];
+                _repositorioCompromisso = (RepositorioCompromisso)RepositorioGlobal.Dados[2];
+                _repositorioDespesa = (RepositorioDespesa)RepositorioGlobal.Dados[3];
+                _repositorioCategoria = (RepositorioCategoria)RepositorioGlobal.Dados[4];
+            }
         }
 
         public static void AtualizarStatus(string status)

@@ -4,13 +4,14 @@ using e_Agenda.WinApp.ModuloTarefa.Item;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
+    [Serializable]
     public class RepositorioTarefa : RepositorioBase<Tarefa>
     {
         public void AdicionarItemTarefa(Tarefa tarefaSelecionada, List<ItemTarefa> itens)
         {
             tarefaSelecionada.itens.AddRange(itens);
 
-            GravarRegistrosEmArquivoBIN();
+            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
         }
 
         public void AtualizarItens(Tarefa tarefaSelecionada, int qtdItensCheck)
@@ -29,7 +30,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             else
                 tarefaSelecionada.dataConclusao = "";
 
-            GravarRegistrosEmArquivoBIN();
+            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
         }
 
         //public RepositorioTarefa()

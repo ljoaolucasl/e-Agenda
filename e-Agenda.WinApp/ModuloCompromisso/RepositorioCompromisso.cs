@@ -2,6 +2,7 @@
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
+    [Serializable]
     public class RepositorioCompromisso : RepositorioBase<Compromisso>
     {
         //public RepositorioCompromisso()

@@ -2,6 +2,7 @@
 
 namespace e_Agenda.WinApp.ModuloDespesas
 {
+    [Serializable]
     public class RepositorioDespesa : RepositorioBase<Despesa>
     {
         //public RepositorioDespesa()

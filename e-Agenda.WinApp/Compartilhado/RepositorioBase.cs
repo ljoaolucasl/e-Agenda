@@ -2,6 +2,7 @@
 
 namespace e_Agenda.WinApp.Compartilhado
 {
+    [Serializable]
     public abstract class RepositorioBase<TEntidade> where TEntidade : Entidade<TEntidade>
     {
         private List<TEntidade> listaRegistros = new();
@@ -14,15 +15,15 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public RepositorioBase()
         {
-            if (File.Exists(CaminhoArquivo))
-                CarregarRegistrosDoArquivoBIN();
+            //if (File.Exists(CaminhoArquivo))
+            //    CarregarRegistrosDoArquivoBIN();
         }
 
         public void Adicionar(TEntidade registro)
         {
             registro.id = id; id++;
             listaRegistros.Add(registro);
-            GravarRegistrosEmArquivoBIN();
+            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
         }
 
         public void Editar(TEntidade novoRegistro)
@@ -41,14 +42,14 @@ namespace e_Agenda.WinApp.Compartilhado
                     property.SetValue(registroAntigo, property.GetValue(novoRegistro));
             }
 
-            GravarRegistrosEmArquivoBIN();
+            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
         }
 
         public void Excluir(TEntidade registroSelecionado)
         {
             listaRegistros.Remove(registroSelecionado);
 
-            GravarRegistrosEmArquivoBIN();
+            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
         }
 
         public TEntidade SelecionarId(int idEscolhido)
@@ -61,28 +62,28 @@ namespace e_Agenda.WinApp.Compartilhado
             return listaRegistros;
         }
 
-        public void GravarRegistrosEmArquivoBIN()
-        {
-            BinaryFormatter serializador = new();
+        //public void GravarRegistrosEmArquivoBIN()
+        //{
+        //    BinaryFormatter serializador = new();
 
-            MemoryStream registroStream = new();
+        //    MemoryStream registroStream = new();
 
-            serializador.Serialize(registroStream, listaRegistros);
+        //    serializador.Serialize(registroStream, listaRegistros);
 
-            File.WriteAllBytes(CaminhoArquivo, registroStream.ToArray());
-        }
+        //    File.WriteAllBytes(CaminhoArquivo, registroStream.ToArray());
+        //}
 
-        public void CarregarRegistrosDoArquivoBIN()
-        {
-            BinaryFormatter serializador = new();
+        //public void CarregarRegistrosDoArquivoBIN()
+        //{
+        //    BinaryFormatter serializador = new();
 
-            byte[] registroBytes = File.ReadAllBytes(CaminhoArquivo);
+        //    byte[] registroBytes = File.ReadAllBytes(CaminhoArquivo);
 
-            MemoryStream registroStream = new MemoryStream(registroBytes);
+        //    MemoryStream registroStream = new MemoryStream(registroBytes);
 
-            listaRegistros = (List<TEntidade>)serializador.Deserialize(registroStream);
+        //    listaRegistros = (List<TEntidade>)serializador.Deserialize(registroStream);
 
-            id = listaRegistros.Max(e => e.id) + 1;
-        }
+        //    id = listaRegistros.Max(e => e.id) + 1;
+        //}
     }
 }
