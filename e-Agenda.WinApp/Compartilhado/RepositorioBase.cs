@@ -3,19 +3,24 @@
     [Serializable]
     public abstract class RepositorioBase<TEntidade> where TEntidade : Entidade<TEntidade>
     {
-        private List<TEntidade> listaRegistros = new();
+        protected DataContext dataContext;
 
-        private int id = 1001;
-
-        private string CaminhoArquivo => $"{typeof(TEntidade).Name}.bin";
+        protected int id = 1001;
 
         public int Id { get { return id; } }
+
+        public RepositorioBase(DataContext dataContext)
+        {
+            this.dataContext = dataContext;
+        }
+
+        protected abstract List<TEntidade> ListaRegistros { get; }
 
         public void Adicionar(TEntidade registro)
         {
             registro.id = id; id++;
-            listaRegistros.Add(registro);
-            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
+            ListaRegistros.Add(registro);
+            dataContext.GravarRegistrosEmArquivoBIN();
         }
 
         public void Editar(TEntidade novoRegistro)
@@ -34,24 +39,24 @@
                     property.SetValue(registroAntigo, property.GetValue(novoRegistro));
             }
 
-            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
+            dataContext.GravarRegistrosEmArquivoBIN();
         }
 
         public void Excluir(TEntidade registroSelecionado)
         {
-            listaRegistros.Remove(registroSelecionado);
+            ListaRegistros.Remove(registroSelecionado);
 
-            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
+            dataContext.GravarRegistrosEmArquivoBIN();
         }
 
         public TEntidade SelecionarId(int idEscolhido)
         {
-            return listaRegistros.Find(e => e.id == idEscolhido);
+            return ListaRegistros.Find(e => e.id == idEscolhido);
         }
 
         public List<TEntidade> ObterListaRegistros()
         {
-            return listaRegistros;
+            return ListaRegistros;
         }
     }
 }

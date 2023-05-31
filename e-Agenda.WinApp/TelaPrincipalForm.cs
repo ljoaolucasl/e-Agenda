@@ -4,7 +4,6 @@ using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
 using e_Agenda.WinApp.ModuloDespesas;
 using e_Agenda.WinApp.ModuloTarefa;
-using System.Runtime.Serialization.Formatters.Binary;
 
 namespace e_Agenda.WinApp
 {
@@ -13,13 +12,13 @@ namespace e_Agenda.WinApp
         private IControladorBase _controladorBase;
         private UserControl _listagem;
 
-        private RepositorioContato _repositorioContato = new();
-        private RepositorioTarefa _repositorioTarefa = new();
-        private RepositorioCompromisso _repositorioCompromisso = new();
-        private RepositorioDespesa _repositorioDespesa = new();
-        private RepositorioCategoria _repositorioCategoria = new();
+        private DataContext _dataContext = new();
 
-        private RepositorioGlobal _repositorioGlobal;
+        private RepositorioCategoria _repositorioCategoria;
+        private RepositorioCompromisso _repositorioCompromisso;
+        private RepositorioContato _repositorioContato;
+        private RepositorioDespesa _repositorioDespesa;
+        private RepositorioTarefa _repositorioTarefa;
 
         private TabelaContatoControl _tabelaContato = new();
         private TabelaTarefaControl _tabelaTarefa = new();
@@ -34,28 +33,15 @@ namespace e_Agenda.WinApp
         {
             InitializeComponent();
 
+            _dataContext.CarregarDados();
+
+            _repositorioCategoria = new RepositorioCategoria(_dataContext);
+            _repositorioCompromisso = new RepositorioCompromisso(_dataContext);
+            _repositorioContato = new RepositorioContato(_dataContext);
+            _repositorioDespesa = new RepositorioDespesa(_dataContext);
+            _repositorioTarefa = new RepositorioTarefa(_dataContext);
+
             _telaPrincipal = this;
-
-            List<object> dados = new()
-            {
-                _repositorioContato,
-                _repositorioTarefa,
-                _repositorioCompromisso,
-                _repositorioDespesa,
-                _repositorioCategoria
-            };
-
-            _repositorioGlobal = new RepositorioGlobal(dados);
-
-            if (File.Exists(RepositorioGlobal.CAMINHO_ARQUIVO))
-            {
-                RepositorioGlobal.CarregarRegistrosDoArquivoBIN();
-                _repositorioContato = (RepositorioContato)RepositorioGlobal.Dados[0];
-                _repositorioTarefa = (RepositorioTarefa)RepositorioGlobal.Dados[1];
-                _repositorioCompromisso = (RepositorioCompromisso)RepositorioGlobal.Dados[2];
-                _repositorioDespesa = (RepositorioDespesa)RepositorioGlobal.Dados[3];
-                _repositorioCategoria = (RepositorioCategoria)RepositorioGlobal.Dados[4];
-            }
         }
 
         public static void AtualizarStatus(string status)

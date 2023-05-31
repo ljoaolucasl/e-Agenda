@@ -1,5 +1,7 @@
 ﻿using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloCompromisso;
+using e_Agenda.WinApp.ModuloDespesas;
 using e_Agenda.WinApp.ModuloTarefa.Item;
 
 namespace e_Agenda.WinApp.ModuloTarefa
@@ -7,11 +9,19 @@ namespace e_Agenda.WinApp.ModuloTarefa
     [Serializable]
     public class RepositorioTarefa : RepositorioBase<Tarefa>
     {
+        public RepositorioTarefa(DataContext dataContext) : base(dataContext)
+        {
+            if (dataContext.Tarefas.Count > 0)
+                id = dataContext.Tarefas.Max(x => x.id) + 1;
+        }
+
+        protected override List<Tarefa> ListaRegistros => dataContext.Tarefas;
+
         public void AdicionarItemTarefa(Tarefa tarefaSelecionada, List<ItemTarefa> itens)
         {
             tarefaSelecionada.itens.AddRange(itens);
 
-            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
+            dataContext.GravarRegistrosEmArquivoBIN();
         }
 
         public void AtualizarItens(Tarefa tarefaSelecionada, int qtdItensCheck)
@@ -30,7 +40,7 @@ namespace e_Agenda.WinApp.ModuloTarefa
             else
                 tarefaSelecionada.dataConclusao = "";
 
-            RepositorioGlobal.GravarRegistrosEmArquivoBIN();
+            dataContext.GravarRegistrosEmArquivoBIN();
         }
 
         public List<Tarefa> FiltrarTarefasPendentes()
