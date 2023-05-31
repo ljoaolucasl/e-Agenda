@@ -1,6 +1,4 @@
-﻿using System.Runtime.Serialization.Formatters.Binary;
-
-namespace e_Agenda.WinApp.Compartilhado
+﻿namespace e_Agenda.WinApp.Compartilhado
 {
     [Serializable]
     public abstract class RepositorioBase<TEntidade> where TEntidade : Entidade<TEntidade>
@@ -12,12 +10,6 @@ namespace e_Agenda.WinApp.Compartilhado
         private string CaminhoArquivo => $"{typeof(TEntidade).Name}.bin";
 
         public int Id { get { return id; } }
-
-        public RepositorioBase()
-        {
-            //if (File.Exists(CaminhoArquivo))
-            //    CarregarRegistrosDoArquivoBIN();
-        }
 
         public void Adicionar(TEntidade registro)
         {
@@ -61,29 +53,5 @@ namespace e_Agenda.WinApp.Compartilhado
         {
             return listaRegistros;
         }
-
-        //public void GravarRegistrosEmArquivoBIN()
-        //{
-        //    BinaryFormatter serializador = new();
-
-        //    MemoryStream registroStream = new();
-
-        //    serializador.Serialize(registroStream, listaRegistros);
-
-        //    File.WriteAllBytes(CaminhoArquivo, registroStream.ToArray());
-        //}
-
-        //public void CarregarRegistrosDoArquivoBIN()
-        //{
-        //    BinaryFormatter serializador = new();
-
-        //    byte[] registroBytes = File.ReadAllBytes(CaminhoArquivo);
-
-        //    MemoryStream registroStream = new MemoryStream(registroBytes);
-
-        //    listaRegistros = (List<TEntidade>)serializador.Deserialize(registroStream);
-
-        //    id = listaRegistros.Max(e => e.id) + 1;
-        //}
     }
 }
