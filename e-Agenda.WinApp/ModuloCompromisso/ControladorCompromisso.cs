@@ -1,5 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.Dominio.ModuloCompromisso;
+using e_Agenda.Infra.Dados.Arquivo.ModuloCompromisso;
+using e_Agenda.Infra.Dados.Arquivo.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {

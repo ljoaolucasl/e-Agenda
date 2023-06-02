@@ -1,6 +1,4 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-
-namespace e_Agenda.WinApp.ModuloContato
+﻿namespace e_Agenda.Dominio.ModuloContato
 {
     [Serializable]
     public class Contato : Entidade<Contato>

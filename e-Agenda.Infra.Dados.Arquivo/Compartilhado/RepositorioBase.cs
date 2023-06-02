@@ -1,4 +1,4 @@
-﻿namespace e_Agenda.WinApp.Compartilhado
+﻿namespace e_Agenda.Infra.Dados.Arquivo.Compartilhado
 {
     [Serializable]
     public abstract class RepositorioBase<TEntidade> where TEntidade : Entidade<TEntidade>

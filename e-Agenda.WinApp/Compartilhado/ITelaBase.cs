@@ -1,4 +1,6 @@
-﻿namespace e_Agenda.WinApp.Compartilhado
+﻿using e_Agenda.Dominio.Compartilhado;
+
+namespace e_Agenda.WinApp.Compartilhado
 {
     public interface ITelaBase<TEntidade> where TEntidade : Entidade<TEntidade>
     {

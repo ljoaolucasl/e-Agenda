@@ -1,4 +1,9 @@
-using e_Agenda.WinApp.Compartilhado;
+using e_Agenda.Infra.Dados.Arquivo.Compartilhado;
+using e_Agenda.Infra.Dados.Arquivo.ModuloCategoria;
+using e_Agenda.Infra.Dados.Arquivo.ModuloCompromisso;
+using e_Agenda.Infra.Dados.Arquivo.ModuloContato;
+using e_Agenda.Infra.Dados.Arquivo.ModuloDespesas;
+using e_Agenda.Infra.Dados.Arquivo.ModuloTarefa;
 using e_Agenda.WinApp.ModuloCategoria;
 using e_Agenda.WinApp.ModuloCompromisso;
 using e_Agenda.WinApp.ModuloContato;
@@ -228,69 +233,6 @@ namespace e_Agenda.WinApp
             btnVisualizarDespesas.Enabled = false;
 
             ConfigurarBotaoFiltro();
-        }
-
-        public void PopularListas()
-        {
-            Categoria categoria1 = new Categoria("Confraternização");
-            _repositorioCategoria.Adicionar(categoria1);
-
-            Categoria categoria2 = new Categoria("Mercado");
-            _repositorioCategoria.Adicionar(categoria2);
-
-            Categoria categoria3 = new Categoria("Farmácia");
-            _repositorioCategoria.Adicionar(categoria3);
-
-            Categoria categoria4 = new Categoria("Combustível");
-            _repositorioCategoria.Adicionar(categoria4);
-
-            Compromisso compromisso1 = new Compromisso("Reunião da Academia", "24/06/2023", "19:00", "21:00", null, "Uniplac", false);
-            _repositorioCompromisso.Adicionar(compromisso1);
-
-            Compromisso compromisso2 = new Compromisso("Aniversário Surpresa", "24/05/2023", "20:00", "23:00", null, "Casa do Marcos", false);
-            _repositorioCompromisso.Adicionar(compromisso2);
-
-            Compromisso compromisso3 = new Compromisso("Reunião do Trabalho", "20/05/2023", "15:00", "16:30", null, "Meet", true);
-            _repositorioCompromisso.Adicionar(compromisso3);
-
-            Compromisso compromisso4 = new Compromisso("Casamento", "24/09/2023", "10:00", "21:00", null, "Retiro Bom Ar", false);
-            _repositorioCompromisso.Adicionar(compromisso4);
-
-            Contato contato1 = new Contato("José Pedro", "(49)99954-8712", "josepedro1@gmail.com", "Padeiro", "Panificadora Silva");
-            _repositorioContato.Adicionar(contato1);
-
-            Contato contato2 = new Contato("Maria Pereira", "(49)99967-3452", "mpereiraa@gmail.com", "Dentista", "Odonto Pass");
-            _repositorioContato.Adicionar(contato2);
-
-            Contato contato3 = new Contato("Lucas Mota", "(49)99923-2266", "lucmota@gmail.com", "Analista Chefe", "CTech");
-            _repositorioContato.Adicionar(contato3);
-
-            Contato contato4 = new Contato("Carla Moraes", "(49)99933-5621", "carla2002@gmail.com", "Especialista em Moda", "Style Brasil");
-            _repositorioContato.Adicionar(contato4);
-
-            Despesa despesa1 = new Despesa("Jantar dos Amigos", "300", "22/04/2023", "Dinheiro");
-            _repositorioDespesa.Adicionar(despesa1);
-
-            Despesa despesa2 = new Despesa("Evento Tech", "1200", "14/03/2023", "Credito");
-            _repositorioDespesa.Adicionar(despesa2);
-
-            Despesa despesa3 = new Despesa("Viagem Exterior", "2400", "10/02/2023", "Debito");
-            _repositorioDespesa.Adicionar(despesa3);
-
-            Despesa despesa4 = new Despesa("Churrasco Empresa", "50", "20/05/2023", "Pix");
-            _repositorioDespesa.Adicionar(despesa4);
-
-            Tarefa tarefa1 = new Tarefa("Pintar a Casa inteira", "Média", "22/03/2023", "", "0%");
-            _repositorioTarefa.Adicionar(tarefa1);
-
-            Tarefa tarefa2 = new Tarefa("Organizar Palestra Tech", "Baixa", "22/04/2023", "", "0%");
-            _repositorioTarefa.Adicionar(tarefa2);
-
-            Tarefa tarefa3 = new Tarefa("Organizar Prova para a Turma", "Média", "10/05/2023", "", "0%");
-            _repositorioTarefa.Adicionar(tarefa3);
-
-            Tarefa tarefa4 = new Tarefa("Finalizar Livro", "Alta", "16/05/2023", "", "0%");
-            _repositorioTarefa.Adicionar(tarefa4);
         }
     }
 }

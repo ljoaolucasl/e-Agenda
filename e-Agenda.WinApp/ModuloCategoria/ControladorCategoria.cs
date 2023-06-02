@@ -1,7 +1,7 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloDespesas;
-using e_Agenda.WinApp.ModuloTarefa.Item;
-using e_Agenda.WinApp.ModuloTarefa;
+﻿using e_Agenda.Dominio.ModuloCategoria;
+using e_Agenda.Dominio.ModuloDespesas;
+using e_Agenda.Infra.Dados.Arquivo.ModuloCategoria;
+using e_Agenda.Infra.Dados.Arquivo.ModuloDespesas;
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {

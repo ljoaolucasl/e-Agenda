@@ -1,5 +1,5 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.Dominio.ModuloCompromisso;
+using e_Agenda.Dominio.ModuloContato;
 
 namespace e_Agenda.WinApp.ModuloCompromisso
 {
@@ -72,7 +72,7 @@ namespace e_Agenda.WinApp.ModuloCompromisso
 
             int contatorErros = 0;
 
-            if (compromisso.ValidarCampoVazio(txtAssunto, avisoErro))
+            if (ValidarCampoVazio(txtAssunto, avisoErro))
                 contatorErros++;
 
             if (ValidarData(dtData))
@@ -93,6 +93,22 @@ namespace e_Agenda.WinApp.ModuloCompromisso
                 btnAdd.Enabled = false;
 
             contatorErros = 0;
+        }
+
+        public bool ValidarCampoVazio(Control control, ErrorProvider avisoErro)
+        {
+            if (string.IsNullOrEmpty(control.Text))
+            {
+                avisoErro.SetError(control, "Campo Obrigatório");
+                control.BackColor = SystemColors.Info;
+                return false;
+            }
+            else
+            {
+                avisoErro.SetError(control, "");
+                control.BackColor = SystemColors.Window;
+                return true;
+            }
         }
 
         private bool ValidarLocalizacao(TextBox txtRemoto, TextBox txtPresencial, RadioButton radioRemoto)

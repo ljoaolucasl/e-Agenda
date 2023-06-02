@@ -1,7 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCategoria;
+﻿using e_Agenda.Dominio.ModuloCompromisso;
 
-namespace e_Agenda.WinApp.ModuloCompromisso
+namespace e_Agenda.Infra.Dados.Arquivo.ModuloCompromisso
 {
     [Serializable]
     public class RepositorioCompromisso : RepositorioBase<Compromisso>

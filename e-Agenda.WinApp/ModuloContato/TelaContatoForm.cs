@@ -1,4 +1,4 @@
-﻿using e_Agenda.WinApp.Compartilhado;
+﻿using e_Agenda.Dominio.ModuloContato;
 using System.Text.RegularExpressions;
 
 namespace e_Agenda.WinApp.ModuloContato
@@ -45,7 +45,7 @@ namespace e_Agenda.WinApp.ModuloContato
 
             int contatorErros = 0;
 
-            if (contato.ValidarCampoVazio((Control)sender, avisoErro))
+            if (ValidarCampoVazio((Control)sender, avisoErro))
                 contatorErros++;
 
             if (ValidarTelefone(txtTelefone))
@@ -60,6 +60,22 @@ namespace e_Agenda.WinApp.ModuloContato
                 btnAdd.Enabled = false;
 
             contatorErros = 0;
+        }
+
+        public bool ValidarCampoVazio(Control control, ErrorProvider avisoErro)
+        {
+            if (string.IsNullOrEmpty(control.Text))
+            {
+                avisoErro.SetError(control, "Campo Obrigatório");
+                control.BackColor = SystemColors.Info;
+                return false;
+            }
+            else
+            {
+                avisoErro.SetError(control, "");
+                control.BackColor = SystemColors.Window;
+                return true;
+            }
         }
 
         private bool ValidarEmail(Control email)

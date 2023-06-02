@@ -1,7 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.Dominio.ModuloContato;
 
-namespace e_Agenda.WinApp.ModuloCompromisso
+namespace e_Agenda.Dominio.ModuloCompromisso
 {
     [Serializable]
     public class Compromisso : Entidade<Compromisso>

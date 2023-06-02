@@ -1,4 +1,5 @@
-﻿using e_Agenda.WinApp.ModuloContato;
+﻿using e_Agenda.Dominio.Compartilhado;
+using e_Agenda.Infra.Dados.Arquivo.Compartilhado;
 
 namespace e_Agenda.WinApp.Compartilhado
 {

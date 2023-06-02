@@ -1,10 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCategoria;
-using e_Agenda.WinApp.ModuloCompromisso;
-using e_Agenda.WinApp.ModuloDespesas;
-using e_Agenda.WinApp.ModuloTarefa.Item;
+﻿using e_Agenda.Dominio.ModuloTarefa;
 
-namespace e_Agenda.WinApp.ModuloTarefa
+namespace e_Agenda.Infra.Dados.Arquivo.ModuloTarefa
 {
     [Serializable]
     public class RepositorioTarefa : RepositorioBase<Tarefa>

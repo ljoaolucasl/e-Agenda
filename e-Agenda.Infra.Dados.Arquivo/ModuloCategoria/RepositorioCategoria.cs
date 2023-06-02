@@ -1,7 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloDespesas;
+﻿using e_Agenda.Dominio.ModuloCategoria;
 
-namespace e_Agenda.WinApp.ModuloCategoria
+namespace e_Agenda.Infra.Dados.Arquivo.ModuloCategoria
 {
     [Serializable]
     public class RepositorioCategoria : RepositorioBase<Categoria>

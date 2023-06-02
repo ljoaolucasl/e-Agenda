@@ -1,8 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCategoria;
-using e_Agenda.WinApp.ModuloCompromisso;
+﻿using e_Agenda.Dominio.ModuloContato;
 
-namespace e_Agenda.WinApp.ModuloContato
+namespace e_Agenda.Infra.Dados.Arquivo.ModuloContato
 {
     [Serializable]
     public class RepositorioContato : RepositorioBase<Contato>

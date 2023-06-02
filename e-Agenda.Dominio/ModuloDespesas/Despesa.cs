@@ -1,7 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCategoria;
+﻿using e_Agenda.Dominio.ModuloCategoria;
 
-namespace e_Agenda.WinApp.ModuloDespesas
+namespace e_Agenda.Dominio.ModuloDespesas
 {
     [Serializable]
     public class Despesa : Entidade<Despesa>

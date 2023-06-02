@@ -1,11 +1,11 @@
-﻿using e_Agenda.WinApp.ModuloCategoria;
-using e_Agenda.WinApp.ModuloCompromisso;
-using e_Agenda.WinApp.ModuloContato;
-using e_Agenda.WinApp.ModuloDespesas;
-using e_Agenda.WinApp.ModuloTarefa;
+﻿using e_Agenda.Dominio.ModuloCategoria;
+using e_Agenda.Dominio.ModuloCompromisso;
+using e_Agenda.Dominio.ModuloContato;
+using e_Agenda.Dominio.ModuloDespesas;
+using e_Agenda.Dominio.ModuloTarefa;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace e_Agenda.WinApp.Compartilhado
+namespace e_Agenda.Infra.Dados.Arquivo.Compartilhado
 {
     [Serializable]
     public class DataContext
@@ -40,6 +40,9 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public void CarregarDados()
         {
+            if (!File.Exists(CAMINHO_ARQUIVO))
+                return;
+
             DataContext dataContext = CarregarRegistrosDoArquivoBIN();
 
             this.Categorias = dataContext.Categorias;
@@ -62,6 +65,7 @@ namespace e_Agenda.WinApp.Compartilhado
 
         public DataContext CarregarRegistrosDoArquivoBIN()
         {
+  
             BinaryFormatter serializador = new();
 
             byte[] registroBytes = File.ReadAllBytes(CAMINHO_ARQUIVO);

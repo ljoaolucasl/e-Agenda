@@ -1,7 +1,5 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloDespesas;
+﻿using e_Agenda.Dominio.ModuloCategoria;
 using System.ComponentModel;
-using System.Xml.Linq;
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {
@@ -43,7 +41,7 @@ namespace e_Agenda.WinApp.ModuloCategoria
 
             int contatorErros = 0;
 
-            if (categoria.ValidarCampoVazio(txtTitulo, avisoErro))
+            if (ValidarCampoVazio(txtTitulo, avisoErro))
                 contatorErros++;
 
             if (contatorErros == 1)
@@ -52,6 +50,22 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 btnAdd.Enabled = false;
 
             contatorErros = 0;
+        }
+
+        public bool ValidarCampoVazio(Control control, ErrorProvider avisoErro)
+        {
+            if (string.IsNullOrEmpty(control.Text))
+            {
+                avisoErro.SetError(control, "Campo Obrigatório");
+                control.BackColor = SystemColors.Info;
+                return false;
+            }
+            else
+            {
+                avisoErro.SetError(control, "");
+                control.BackColor = SystemColors.Window;
+                return true;
+            }
         }
     }
 }

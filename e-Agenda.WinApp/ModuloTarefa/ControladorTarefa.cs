@@ -1,8 +1,6 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCategoria;
-using e_Agenda.WinApp.ModuloCompromisso;
+﻿using e_Agenda.Dominio.ModuloTarefa;
+using e_Agenda.Infra.Dados.Arquivo.ModuloTarefa;
 using e_Agenda.WinApp.ModuloTarefa.Item;
-using System.Collections;
 
 namespace e_Agenda.WinApp.ModuloTarefa
 {
@@ -47,16 +45,9 @@ namespace e_Agenda.WinApp.ModuloTarefa
 
             int qtdItensAtualizados = 0;
 
-            //foreach (ListViewItem tarefa in _tabelaTarefa.ListView.SelectedItems)
-            //{
-            //    telaItemCheck.lbTarefa.Text = tarefa.SubItems[1].Text;
-            //    tarefaSelecionada = (Tarefa)tarefa.Tag;
-            //}
-
             tarefaSelecionada = _tabelaTarefa.ObterTarefaSelecionada();
 
             telaItemCheck.lbTarefa.Text = tarefaSelecionada.titulo;
-
 
             telaItemCheck.Entidade = tarefaSelecionada.itens;
 

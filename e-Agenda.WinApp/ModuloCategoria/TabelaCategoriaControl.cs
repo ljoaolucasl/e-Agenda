@@ -1,5 +1,4 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using System.Data;
+﻿using e_Agenda.Dominio.ModuloCategoria;
 
 namespace e_Agenda.WinApp.ModuloCategoria
 {
@@ -31,25 +30,12 @@ namespace e_Agenda.WinApp.ModuloCategoria
                 gridCategoria.Rows.Add(row);
             }
 
-            //listCategorias.Items.Clear();
-
-            //foreach (Categoria categoria in categorias)
-            //{
-            //    ListViewItem item = new ListViewItem(categoria.id.ToString());
-            //    item.SubItems.Add(categoria.titulo);
-            //    item.Tag = categoria;
-            //    listCategorias.Items.Add(item);
-            //}
-
             TelaPrincipalForm.AtualizarStatus($"Visualizando {categorias.Count} Categorias");
         }
 
         public Categoria? ObterTarefaSelecionada()
         {
             return (Categoria)gridCategoria.SelectedRows[0].Cells[0].Tag;
-
-            //ListViewItem itemSelecionado = listCategorias.SelectedItems[0];
-            //return listCategorias.SelectedItems.Count > 0 ? (Categoria)itemSelecionado.Tag : null;
         }
     }
 }

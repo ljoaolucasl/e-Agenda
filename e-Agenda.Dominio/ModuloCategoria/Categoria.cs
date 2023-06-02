@@ -1,6 +1,4 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-
-namespace e_Agenda.WinApp.ModuloCategoria
+﻿namespace e_Agenda.Dominio.ModuloCategoria
 {
     [Serializable]
     public class Categoria : Entidade<Categoria>

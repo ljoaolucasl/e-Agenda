@@ -1,6 +1,5 @@
-﻿using e_Agenda.WinApp.Compartilhado;
-using e_Agenda.WinApp.ModuloCategoria;
-using e_Agenda.WinApp.ModuloTarefa.Item;
+﻿using e_Agenda.Dominio.ModuloCategoria;
+using e_Agenda.Dominio.ModuloDespesas;
 using System.ComponentModel;
 
 namespace e_Agenda.WinApp.ModuloDespesas
@@ -69,13 +68,13 @@ namespace e_Agenda.WinApp.ModuloDespesas
 
             int contatorErros = 0;
 
-            if (despesa.ValidarCampoVazio(txtDescricao, avisoErro))
+            if (ValidarCampoVazio(txtDescricao, avisoErro))
                 contatorErros++;
 
-            if (despesa.ValidarCampoVazio(txtValor, avisoErro))
+            if (ValidarCampoVazio(txtValor, avisoErro))
                 contatorErros++;
 
-            if (despesa.ValidarCampoVazio(cbPagamento, avisoErro))
+            if (ValidarCampoVazio(cbPagamento, avisoErro))
                 contatorErros++;
 
             if (contatorErros == 3)
@@ -86,5 +85,20 @@ namespace e_Agenda.WinApp.ModuloDespesas
             contatorErros = 0;
         }
 
+        public bool ValidarCampoVazio(Control control, ErrorProvider avisoErro)
+        {
+            if (string.IsNullOrEmpty(control.Text))
+            {
+                avisoErro.SetError(control, "Campo Obrigatório");
+                control.BackColor = SystemColors.Info;
+                return false;
+            }
+            else
+            {
+                avisoErro.SetError(control, "");
+                control.BackColor = SystemColors.Window;
+                return true;
+            }
+        }
     }
 }
